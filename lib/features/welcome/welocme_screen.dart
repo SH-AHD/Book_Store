@@ -1,4 +1,6 @@
 import 'package:bookia/core/constants/app_assets.dart';
+import 'package:bookia/core/helpers/navigation.dart';
+import 'package:bookia/core/routes/routes.dart';
 import 'package:bookia/core/styles/app_colors.dart';
 import 'package:bookia/core/styles/text_styles.dart';
 import 'package:bookia/core/widgets/main_button.dart';
@@ -12,7 +14,7 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-body: Stack(
+      body: Stack(
         children: [
           Image.asset(
             AppAssets.bg,
@@ -28,22 +30,28 @@ body: Stack(
             bottom: 0,
             child: Column(
               children: [
-                Spacer(flex: 2,),
+                Spacer(flex: 2),
                 SvgPic(path: AppAssets.logo),
                 Gap(15),
                 Text("Order Your Book Now!", style: TextStyles.font18),
-                  Spacer(flex: 5,),
-                MainButton(text: "Login", onPressed: () {}),
- Gap(15),
+                Spacer(flex: 5),
+                MainButton(
+                  text: "Login",
+                  onPressed: () {
+                    pushPage(context, Routes.login);
+                  },
+                ),
+                Gap(15),
                 MainButton(
                   text: "Register",
-                  onPressed: () {},
+                  onPressed: () {
+                    pushPage(context, Routes.register);
+                  },
                   borderColor: AppColors.darkColor,
                   color: AppColors.backgroundColor,
                   textColor: AppColors.darkColor,
-              
                 ),
-                   Spacer(),
+                Spacer(),
               ],
             ),
           ),
