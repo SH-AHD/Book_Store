@@ -1,5 +1,3 @@
 class AppFonts {
-
-static const dMSerifDisplay="DMSerifDisplay";
-
+  static const dMSerifDisplay = "DMSerifDisplay";
 }
