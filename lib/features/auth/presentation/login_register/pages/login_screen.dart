@@ -6,7 +6,6 @@ import 'package:bookia/core/styles/app_colors.dart';
 import 'package:bookia/core/styles/text_styles.dart';
 import 'package:bookia/core/widgets/app_text_field.dart';
 import 'package:bookia/core/widgets/body_view.dart';
-import 'package:bookia/core/widgets/dialogs.dart';
 import 'package:bookia/core/widgets/main_button.dart';
 import 'package:bookia/core/widgets/svg_pic.dart';
 import 'package:bookia/features/auth/presentation/cubit/auth_cubit.dart';

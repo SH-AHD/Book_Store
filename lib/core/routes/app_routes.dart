@@ -1,16 +1,15 @@
 import 'package:bookia/core/routes/routes.dart';
 import 'package:bookia/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:bookia/features/auth/presentation/forget_password/forget_password_screen.dart';
-import 'package:bookia/features/auth/presentation/forget_password/otp_screen.dart';
-import 'package:bookia/features/auth/presentation/forget_password/password_changed_screen.dart';
-import 'package:bookia/features/auth/presentation/forget_password/reset_password_screen.dart';
+import 'package:bookia/features/auth/presentation/forget_password/pages/forget_password_screen.dart';
+import 'package:bookia/features/auth/presentation/forget_password/pages/otp_screen.dart';
+import 'package:bookia/features/auth/presentation/forget_password/pages/password_changed_screen.dart';
+import 'package:bookia/features/auth/presentation/forget_password/pages/reset_password_screen.dart';
 import 'package:bookia/features/auth/presentation/login_register/pages/login_screen.dart';
 import 'package:bookia/features/auth/presentation/login_register/pages/register_screen.dart';
 import 'package:bookia/features/home/pages/home_screen.dart';
 import 'package:bookia/features/main/main_app_screen.dart';
 import 'package:bookia/features/splash/splash_screen.dart';
 import 'package:bookia/features/welcome/welocme_screen.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 

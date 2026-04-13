@@ -1,6 +1,5 @@
 import 'package:bookia/core/services/local/shared_pref.dart';
 import 'package:bookia/features/auth/data/auth_params.dart';
-import 'package:bookia/features/auth/data/models/auth_response/user.dart';
 import 'package:bookia/features/auth/data/repositories/auth_repo.dart';
 import 'package:bookia/features/auth/presentation/cubit/auth_state.dart';
 import 'package:flutter/material.dart';
@@ -121,13 +120,14 @@ void sendCode(String code) {
   }
 Future<void> resetPassword() async{
   emit(AuthLoadingState());
+
 // for cubit testing "due server error""
 Future.delayed(const Duration(seconds: 3));
 emit(AuthSuccessState());
 
+
+
 /// uncomment this when server works
-
-
 
 //   try{
 // var params=AuthParams.resetPassword(
