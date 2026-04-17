@@ -15,16 +15,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
 class OtpScreen extends StatelessWidget {
-   OtpScreen({super.key});
+  OtpScreen({super.key});
   String enteredCode = '';
 
   @override
   Widget build(BuildContext context) {
-   
-   
-    return   BlocListener<AuthCubit, AuthState>(
+    return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
-    authListener(
+        authListener(
           context: context,
           state: state,
           navigationMethod: pushPage,
@@ -33,66 +31,60 @@ class OtpScreen extends StatelessWidget {
         );
       },
       child: Scaffold(
-            appBar: AppBar(
-              automaticallyImplyLeading: false,
-              title: GestureDetector(
-                onTap: () {
-                  popPage(context);
-                },
-                child: SvgPic(path: AppAssets.backSvg),
-              ),
-            ),
-            body: _body(context),
-    
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: GestureDetector(
+            onTap: () {
+              popPage(context);
+            },
+            child: SvgPic(path: AppAssets.backSvg),
+          ),
         ),
+        body: _body(context),
+      ),
     );
   }
 
   SingleChildScrollView _body(BuildContext context) {
-    AuthCubit cubit=context.read<AuthCubit>();
+    AuthCubit cubit = context.read<AuthCubit>();
     return SingleChildScrollView(
-        child: BodyView(
-          child: Form(
-            key: cubit.formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "OTP Verification",
-                  style: TextStyles.font30,
-                ),
-                Gap(10),
-                 Text(
-                  "Enter the verification code we just sent on your email address.",
-                  style: TextStyles.font16.copyWith(color: AppColors.grayColor),
-                ),
-                Gap(35),
-               //Pinput
-               Center(
-                 child: PinField(onComplete: (p0) => {
-                  
-                  cubit.verifyCodeController.text=p0,
-                  cubit.sendCode(p0),
-                  cubit.checkOtpCode(),
-                  
-                  },
-                  
-                  ),
-               ),
-     Gap(35),
-                MainButton(
-                  text: "Verify",
-                  onPressed: () {
-                  if(cubit.formKey.currentState!.validate())
-                  {
-                    enteredCode=cubit.verifyCodeController.text;
-                    cubit.checkOtpCode();}
+      child: BodyView(
+        child: Form(
+          key: cubit.formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("OTP Verification", style: TextStyles.font30),
+              Gap(10),
+              Text(
+                "Enter the verification code we just sent on your email address.",
+                style: TextStyles.font16.copyWith(color: AppColors.grayColor),
+              ),
+              Gap(35),
+              //Pinput
+              Center(
+                child: PinField(
+                  onComplete: (p0) => {
+                    cubit.verifyCodeController.text = p0,
+                    cubit.sendCode(p0),
+                    cubit.checkOtpCode(),
                   },
                 ),
-],
-            ),
+              ),
+              Gap(35),
+              MainButton(
+                text: "Verify",
+                onPressed: () {
+                  if (cubit.formKey.currentState!.validate()) {
+                    enteredCode = cubit.verifyCodeController.text;
+                    cubit.checkOtpCode();
+                  }
+                },
+              ),
+            ],
           ),
         ),
-      );
+      ),
+    );
   }
 }

@@ -6,7 +6,9 @@ import 'package:bookia/features/auth/presentation/forget_password/pages/password
 import 'package:bookia/features/auth/presentation/forget_password/pages/reset_password_screen.dart';
 import 'package:bookia/features/auth/presentation/login_register/pages/login_screen.dart';
 import 'package:bookia/features/auth/presentation/login_register/pages/register_screen.dart';
-import 'package:bookia/features/home/pages/home_screen.dart';
+import 'package:bookia/features/details/pages/details_screen.dart';
+import 'package:bookia/features/home/data/models/all_products_response/product.dart';
+import 'package:bookia/features/home/presentation/pages/home_screen.dart';
 import 'package:bookia/features/main/main_app_screen.dart';
 import 'package:bookia/features/splash/splash_screen.dart';
 import 'package:bookia/features/welcome/welocme_screen.dart';
@@ -14,53 +16,81 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRoutes {
- // routes config
+  // routes config
 
   static final routes = GoRouter(
     routes: [
-      GoRoute(path: Routes.splash, builder: (context, state) => const SplashScreen()),
+      GoRoute(
+        path: Routes.splash,
+        builder: (context, state) => const SplashScreen(),
+      ),
 
       GoRoute(
         path: Routes.welcome,
         builder: (context, state) => const WelcomeScreen(),
       ),
-      GoRoute(path: Routes.login, builder: (context, state) => BlocProvider(
-        create: (context) => AuthCubit(),
-        child: LoginScreen())),
-      GoRoute(path: Routes.register, builder: (context, state) => BlocProvider(
-        create: (context) => AuthCubit(),
-        child:RegisterScreen())),
-     
+      GoRoute(
+        path: Routes.login,
+        builder: (context, state) => BlocProvider(
+          create: (context) => AuthCubit(),
+          child: LoginScreen(),
+        ),
+      ),
+      GoRoute(
+        path: Routes.register,
+        builder: (context, state) => BlocProvider(
+          create: (context) => AuthCubit(),
+          child: RegisterScreen(),
+        ),
+      ),
+
       GoRoute(path: Routes.home, builder: (context, state) => HomeScreen()),
       GoRoute(path: Routes.main, builder: (context, state) => MainAppScreen()),
-     
+
       GoRoute(
         path: Routes.forgetPass,
         builder: (context, state) => BlocProvider(
-        create: (context) => AuthCubit(),
-        child:ForgetPasswordScreen())),  
- GoRoute(
+          create: (context) => AuthCubit(),
+          child: ForgetPasswordScreen(),
+        ),
+      ),
+      GoRoute(
         path: Routes.otp,
-        builder: (context, state){
-       final String receivedEmail = state.extra as String;
-       return BlocProvider(
-        create: (context) => AuthCubit()..updateEmail(receivedEmail),
-         child:OtpScreen());}),  
+        builder: (context, state) {
+          final String receivedEmail = state.extra as String;
+          return BlocProvider(
+            create: (context) => AuthCubit()..updateEmail(receivedEmail),
+            child: OtpScreen(),
+          );
+        },
+      ),
 
-         GoRoute(
+      GoRoute(
         path: Routes.resetPass,
-        builder: (context, state){ 
-           final String receivedcode = state.extra as String;
-       return BlocProvider(
-        create: (context) => AuthCubit()..sendCode(receivedcode),
-        child:ResetPasswordScreen());}),      
-    
-     GoRoute(path: Routes.passwordChanged, builder: (context, state) => const PasswordChangedScreen()),
+        builder: (context, state) {
+          final String receivedcode = state.extra as String;
+          return BlocProvider(
+            create: (context) => AuthCubit()..sendCode(receivedcode),
+            child: ResetPasswordScreen(),
+          );
+        },
+      ),
 
-    
-    
+      GoRoute(
+        path: Routes.passwordChanged,
+        builder: (context, state) => const PasswordChangedScreen(),
+      ),
+
+
+  GoRoute(
+        path: Routes.details,
+        builder: (context, state) =>  DetailsScreen(
+book:state.extra as Product
+
+        ),
+      ),
+
+
     ],
   );
-
-
 }

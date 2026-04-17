@@ -9,7 +9,7 @@ class User {
   String? image;
 
   User({
-   required this.id,
+    required this.id,
     this.name,
     this.email,
     this.address,

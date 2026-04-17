@@ -26,15 +26,10 @@ class AppThemes {
       fillColor: AppColors.lightGrayColor,
     ),
 
-bottomNavigationBarTheme:BottomNavigationBarThemeData(
-
-  showSelectedLabels: false,
-  showUnselectedLabels: false,
-  type: BottomNavigationBarType.fixed,
-  
-  ),
-
-
-
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+      type: BottomNavigationBarType.fixed,
+    ),
   );
 }

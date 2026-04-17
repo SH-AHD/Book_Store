@@ -14,8 +14,8 @@ class AuthCubit extends Cubit<AuthState> {
   final passwordConfirmationController = TextEditingController();
   final verifyCodeController = TextEditingController();
 
-String userEmail = '';
-String verifyCode = '';
+  String userEmail = '';
+  String verifyCode = '';
 
   @override
   Future<void> close() {
@@ -36,6 +36,9 @@ String verifyCode = '';
       );
       var data = await AuthRepo.login(params);
       if (data != null) {
+        SharedPref.saveToken(data.data?.token);
+        SharedPref.saveUsrInfo(data.data?.user);
+
         emit(AuthSuccessState());
       }
     } catch (error) {
@@ -64,11 +67,11 @@ String verifyCode = '';
 
   Future<void> forgetPassword() async {
     emit(AuthLoadingState());
-// for cubit testing "due server error""
-Future.delayed(const Duration(seconds: 3));
-emit(AuthSuccessState());
+    // for cubit testing "due server error""
+    Future.delayed(const Duration(seconds: 3));
+    emit(AuthSuccessState());
 
-/// uncomment this when server works
+    /// uncomment this when server works
 
     // try {
     //   var param = AuthParams(
@@ -82,117 +85,103 @@ emit(AuthSuccessState());
     // }
   }
 
-void updateEmail(String email) {
+  void updateEmail(String email) {
     userEmail = email;
   }
 
-Future<void> checkOtpCode() async{
-  emit(AuthLoadingState());
+  Future<void> checkOtpCode() async {
+    emit(AuthLoadingState());
 
-// for cubit testing "due server error""
-Future.delayed(const Duration(seconds: 3));
-emit(AuthSuccessState());
+    // for cubit testing "due server error""
+    Future.delayed(const Duration(seconds: 3));
+    emit(AuthSuccessState());
 
-/// uncomment this when server works
+    /// uncomment this when server works
 
+    //   try{
+    //     if(userEmail.isEmpty){
+    //       emit(AuthErrorState( 'something went wrong'));
+    //     }
+    // var params=AuthParams.verify(
+    // email:userEmail,
+    // code: verifyCodeController.text.trim(),
 
-//   try{
-//     if(userEmail.isEmpty){
-//       emit(AuthErrorState( 'something went wrong'));
-//     }
-// var params=AuthParams.verify(
-// email:userEmail,
-// code: verifyCodeController.text.trim(),
+    // );
+    // var data=await AuthRepo.checkForgetPasswordCode(params);
+    // if(data!=null){
+    //   emit(AuthSuccessState());
+    // }
+    //   }catch(error){
+    //     emit(AuthErrorState(error.toString()));
+    //   }
+  }
 
-// );
-// var data=await AuthRepo.checkForgetPasswordCode(params);
-// if(data!=null){
-//   emit(AuthSuccessState());
-// }
-//   }catch(error){
-//     emit(AuthErrorState(error.toString()));
-//   }
-}
-
-
-void sendCode(String code) {
+  void sendCode(String code) {
     verifyCode = code;
   }
-Future<void> resetPassword() async{
-  emit(AuthLoadingState());
 
-// for cubit testing "due server error""
-Future.delayed(const Duration(seconds: 3));
-emit(AuthSuccessState());
+  Future<void> resetPassword() async {
+    emit(AuthLoadingState());
 
+    // for cubit testing "due server error""
+    Future.delayed(const Duration(seconds: 3));
+    emit(AuthSuccessState());
 
+    /// uncomment this when server works
 
-/// uncomment this when server works
+    //   try{
+    // var params=AuthParams.resetPassword(
+    // code: verifyCode.trim(),
+    // newPassword: passwordController.text.trim(),
+    // newPasswordConfirmation: passwordConfirmationController.text.trim(),
 
-//   try{
-// var params=AuthParams.resetPassword(
-// code: verifyCode.trim(),
-// newPassword: passwordController.text.trim(),
-// newPasswordConfirmation: passwordConfirmationController.text.trim(),
-
-// );
-// var data=await AuthRepo.resetPassword(params);
-// if(data!=null){
-//   emit(AuthSuccessState());
-// }
-//   }catch(error){
-//     emit(AuthErrorState(error.toString()));
-//   }
-}
-
-
-
- Future<void> resendVerifyCode() async{
-  emit(AuthLoadingState());
-  try{
-var token=SharedPref.getToken();
-var data=await AuthRepo.resendVerifyLink(token);
-if(data!=null){
-  emit(AuthSuccessState());
-}
-  }catch(error){
-    emit(AuthErrorState(error.toString()));
+    // );
+    // var data=await AuthRepo.resetPassword(params);
+    // if(data!=null){
+    //   emit(AuthSuccessState());
+    // }
+    //   }catch(error){
+    //     emit(AuthErrorState(error.toString()));
+    //   }
   }
-}
 
-
-Future<void> verifyEmail() async{
-  emit(AuthLoadingState());
-  try{
-    var token=SharedPref.getToken();
-var params=AuthParams.verify(
-code: verifyCodeController.text.trim(),
-
-);
-var data=await AuthRepo.verifyEMail(params,token);
-if(data!=null){
-  emit(AuthSuccessState());
-}
-  }catch(error){
-    emit(AuthErrorState(error.toString()));
+  Future<void> resendVerifyCode() async {
+    emit(AuthLoadingState());
+    try {
+      var token = SharedPref.getToken();
+      var data = await AuthRepo.resendVerifyLink(token);
+      if (data != null) {
+        emit(AuthSuccessState());
+      }
+    } catch (error) {
+      emit(AuthErrorState(error.toString()));
+    }
   }
-}
 
-
-
-Future<void> logOut() async{
-  emit(AuthLoadingState());
-  try{
-    var token=SharedPref.getToken();
-var data=await AuthRepo.logoutUsr(token);
-if(data!=null){
-  emit(AuthSuccessState());
-}
-  }catch(error){
-    emit(AuthErrorState(error.toString()));
+  Future<void> verifyEmail() async {
+    emit(AuthLoadingState());
+    try {
+      var token = SharedPref.getToken();
+      var params = AuthParams.verify(code: verifyCodeController.text.trim());
+      var data = await AuthRepo.verifyEMail(params, token);
+      if (data != null) {
+        emit(AuthSuccessState());
+      }
+    } catch (error) {
+      emit(AuthErrorState(error.toString()));
+    }
   }
-}
 
-
-
+  Future<void> logOut() async {
+    emit(AuthLoadingState());
+    try {
+      var token = SharedPref.getToken();
+      var data = await AuthRepo.logoutUsr(token);
+      if (data != null) {
+        emit(AuthSuccessState());
+      }
+    } catch (error) {
+      emit(AuthErrorState(error.toString()));
+    }
+  }
 }

@@ -21,22 +21,19 @@ class PasswordChangedScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SvgPic(path: AppAssets.successMark),
-               Text(
-                    "Password Changed!",
-                    style: TextStyles.font30,
-                  ),
-                  Gap(3),
-                   Text(
-                    "Your password has been changed successfully.",
-                    style: TextStyles.font16.copyWith(color: AppColors.grayColor),
-                  ),
-                   Gap(40),
-                  MainButton(
-                    text: "Back to Login",
-                    onPressed: () {
-                   pushAndRemoveUntilPage(context, Routes.login);
-                    },
-                  ),
+              Text("Password Changed!", style: TextStyles.font30),
+              Gap(3),
+              Text(
+                "Your password has been changed successfully.",
+                style: TextStyles.font16.copyWith(color: AppColors.grayColor),
+              ),
+              Gap(40),
+              MainButton(
+                text: "Back to Login",
+                onPressed: () {
+                  pushAndRemoveUntilPage(context, Routes.login);
+                },
+              ),
             ],
           ),
         ),

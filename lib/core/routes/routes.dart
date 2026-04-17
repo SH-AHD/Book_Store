@@ -5,12 +5,14 @@ class Routes {
   static const String login = "/login";
   static const String register = "/register";
   static const String forgetPass = "/forget_password";
-    static const String otp = "/otp";
+  static const String otp = "/otp";
   static const String resetPass = "/reset_password";
   static const String passwordChanged = "/password-changed";
 
-
   static const String home = "/home";
+
   static const String main = "/main";
 
- }
+  static const String details = "/details";
+
+}

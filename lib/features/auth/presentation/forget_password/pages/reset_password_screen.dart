@@ -20,7 +20,7 @@ class ResetPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   BlocListener<AuthCubit, AuthState>(
+    return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
         authListener(
           context: context,
@@ -30,62 +30,63 @@ class ResetPasswordScreen extends StatelessWidget {
         );
       },
       child: Scaffold(
-            appBar: AppBar(
-              automaticallyImplyLeading: false,
-              title: GestureDetector(
-                onTap: () {
-                  popPage(context);
-                },
-                child: SvgPic(path: AppAssets.backSvg),
-              ),
-            ),
-            body: _body(context),
-    
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: GestureDetector(
+            onTap: () {
+              popPage(context);
+            },
+            child: SvgPic(path: AppAssets.backSvg),
+          ),
         ),
+        body: _body(context),
+      ),
     );
   }
 
   SingleChildScrollView _body(BuildContext context) {
-    AuthCubit cubit=context.read<AuthCubit>();
+    AuthCubit cubit = context.read<AuthCubit>();
     return SingleChildScrollView(
-        child: BodyView(
-          child: Form(
-            key: cubit.formKey,
-            child: Column(
-              children: [
-                Text(
-                  "Create new password",
-                  style: TextStyles.font30,
-                ),
-                Gap(10),
-                 Text(
-                  "Your new password must be unique from those previously used.",
-                  style: TextStyles.font16.copyWith(color: AppColors.grayColor),
-                ),
-                Gap(32),
-                AppTextField(
-                  controller: cubit.passwordController,
-                  hintText: "New Password",
-                  validator: AppValidators.validatePassword,
-                ),
-                Gap(15),
-                 AppTextField(
-                  controller: cubit.passwordConfirmationController,
-                  hintText: "Confirm Password",
-                  validator: (value)=>AppValidators.validatePasswordConfirmation(value, cubit.passwordController.text),
-                ),
-     Gap(38),
-                MainButton(
-                  text: "Reset Password",
-                  onPressed: () {
-                  if(cubit.formKey.currentState!.validate())
-                  {cubit.resetPassword();}
-                  },
-                ),
-],
-            ),
+      child: BodyView(
+        child: Form(
+          key: cubit.formKey,
+          child: Column(
+            children: [
+              Text("Create new password", style: TextStyles.font30),
+              Gap(10),
+              Text(
+                "Your new password must be unique from those previously used.",
+                style: TextStyles.font16.copyWith(color: AppColors.grayColor),
+              ),
+              Gap(32),
+              AppTextField(
+                controller: cubit.passwordController,
+                hintText: "New Password",
+                validator: AppValidators.validatePassword,
+              ),
+              Gap(15),
+              AppTextField(
+                controller: cubit.passwordConfirmationController,
+                hintText: "Confirm Password",
+                validator: (value) =>
+                    AppValidators.validatePasswordConfirmation(
+                      value,
+                      cubit.passwordController.text,
+                    ),
+              ),
+              Gap(38),
+              MainButton(
+                text: "Reset Password",
+                onPressed: () {
+                  if (cubit.formKey.currentState!.validate()) {
+                    cubit.resetPassword();
+                  }
+                },
+              ),
+            ],
           ),
         ),
-      );
+      ),
+    );
   }
 }
