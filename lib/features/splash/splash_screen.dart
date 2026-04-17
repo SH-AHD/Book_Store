@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bookia/core/constants/app_assets.dart';
 import 'package:bookia/core/helpers/navigation.dart';
 import 'package:bookia/core/routes/routes.dart';
@@ -15,22 +17,19 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
- 
   @override
   void initState() {
     super.initState();
 
- bool isLoggedIn=SharedPref.getToken().isNotEmpty;
+    bool isLoggedIn = SharedPref.getToken().isNotEmpty;
     Future.delayed(const Duration(seconds: 3), () {
       // pushReplacementPage(context, Routes.main);
-
-     if(isLoggedIn){
-      pushReplacementPage(context, Routes.main);
-     }
-else{
-      pushReplacementPage(context, Routes.welcome);
-
-}
+log("$isLoggedIn");
+      if (isLoggedIn) {
+        pushReplacementPage(context, Routes.main);
+      } else {
+        pushReplacementPage(context, Routes.welcome);
+      }
     });
   }
 

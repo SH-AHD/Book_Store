@@ -24,18 +24,17 @@ class SharedPref {
 
   static Future<void> saveUsrInfo(User? user) async {
     if (user == null) return;
-    var userAsJson=user.toJson();
-    var userAsString=jsonEncode(userAsJson);
-    await prefs.setString(kUser,userAsString);
+    var userAsJson = user.toJson();
+    var userAsString = jsonEncode(userAsJson);
+    await prefs.setString(kUser, userAsString);
   }
 
   static User? getUsrInfo() {
-    var cachedUerInfo=prefs.getString(kUser);
-    if(cachedUerInfo==null) return null;
-var userInfoAsJson=jsonDecode(cachedUerInfo);
+    var cachedUerInfo = prefs.getString(kUser);
+    if (cachedUerInfo == null) return null;
+    var userInfoAsJson = jsonDecode(cachedUerInfo);
     return User.fromJson(userInfoAsJson);
   }
-
 
   static Future<void> setString(String key, String value) async {
     await prefs.setString(key, value);
