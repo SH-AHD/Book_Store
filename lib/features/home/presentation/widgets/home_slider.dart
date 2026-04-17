@@ -32,8 +32,9 @@ class _HomeSliderState extends State<HomeSlider> {
             borderRadius: 10,),
          );
         } else if (state is HomeErrorState) {
-          popPage(context);
-          showErrorDialog(context, state.error);
+       return Center(
+        child: Icon(Icons.error, size: 10,color: AppColors.redColor,),
+       );
         }
 
         return Column(

@@ -4,9 +4,7 @@ import 'package:bookia/core/styles/app_colors.dart';
 import 'package:bookia/core/styles/text_styles.dart';
 import 'package:bookia/core/widgets/main_button.dart';
 import 'package:bookia/core/widgets/custom_cached_network_image.dart';
-import 'package:bookia/core/widgets/shimmer/custom_shimmer_widget.dart';
 import 'package:bookia/features/home/data/models/all_products_response/product.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 

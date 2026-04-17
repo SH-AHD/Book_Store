@@ -1,5 +1,4 @@
 import 'package:bookia/core/widgets/shimmer/custom_shimmer_widget.dart';
-import 'package:bookia/features/home/data/models/all_products_response/product.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
