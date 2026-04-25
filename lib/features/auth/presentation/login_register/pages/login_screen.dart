@@ -6,7 +6,6 @@ import 'package:bookia/core/styles/app_colors.dart';
 import 'package:bookia/core/styles/text_styles.dart';
 import 'package:bookia/core/widgets/app_text_field.dart';
 import 'package:bookia/core/widgets/body_view.dart';
-import 'package:bookia/core/widgets/dialogs.dart';
 import 'package:bookia/core/widgets/main_button.dart';
 import 'package:bookia/core/widgets/svg_pic.dart';
 import 'package:bookia/features/auth/presentation/cubit/auth_cubit.dart';
@@ -23,9 +22,14 @@ class LoginScreen extends StatelessWidget {
   TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
-     return BlocListener<AuthCubit, AuthState>(
+    return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
-  authListener(context: context,state: state,navigationMethod: pushPage,routName:Routes.main);
+        authListener(
+          context: context,
+          state: state,
+          navigationMethod: pushPage,
+          routName: Routes.main,
+        );
       },
       child: Scaffold(
         appBar: AppBar(
@@ -50,59 +54,60 @@ class LoginScreen extends StatelessWidget {
   }
 
   SingleChildScrollView _loginBody(BuildContext context) {
-    AuthCubit cubit=context.read<AuthCubit>();
+    AuthCubit cubit = context.read<AuthCubit>();
     return SingleChildScrollView(
-        child: BodyView(
-          child: Form(
-            key: cubit.formKey,
-            child: Column(
-              children: [
-                Text(
-                  "Welcome back! Glad to see you, Again!",
-                  style: TextStyles.font30,
-                ),
-                Gap(32),
-                AppTextField(
-                  controller: cubit.emailController,
-                  hintText: "Enter your email",
-                  validator: AppValidators.validateEmail,
-                ),
-                Gap(15),
-                AppTextField(
-                  controller: cubit.passwordController,
-                  hintText: "Enter your password",
-                  validator: AppValidators.validatePassword,
-                  isPass: true,
-                ),
-                Gap(13),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: GestureDetector(
-                    onTap: () {
-                      pushPage(context, Routes.forgetPass);
-                    },
-                    child: Text(
-                      "Forgot Password?",
-                      style: TextStyles.font14.copyWith(
-                        color: AppColors.darkGrayColor,
-                      ),
+      child: BodyView(
+        child: Form(
+          key: cubit.formKey,
+          child: Column(
+            children: [
+              Text(
+                "Welcome back! Glad to see you, Again!",
+                style: TextStyles.font30,
+              ),
+              Gap(32),
+              AppTextField(
+                controller: cubit.emailController,
+                hintText: "Enter your email",
+                validator: AppValidators.validateEmail,
+              ),
+              Gap(15),
+              AppTextField(
+                controller: cubit.passwordController,
+                hintText: "Enter your password",
+                validator: AppValidators.validatePassword,
+                isPass: true,
+              ),
+              Gap(13),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: GestureDetector(
+                  onTap: () {
+                    pushPage(context, Routes.forgetPass);
+                  },
+                  child: Text(
+                    "Forgot Password?",
+                    style: TextStyles.font14.copyWith(
+                      color: AppColors.darkGrayColor,
                     ),
                   ),
                 ),
-                Gap(30),
-                MainButton(
-                  text: "Login",
-                  onPressed: () {
-                  if(cubit.formKey.currentState!.validate())
-                  {cubit.login();}
-                  },
-                ),
-                Gap(34),
-                SocialLogin(),
-              ],
-            ),
+              ),
+              Gap(30),
+              MainButton(
+                text: "Login",
+                onPressed: () {
+                  if (cubit.formKey.currentState!.validate()) {
+                    cubit.login();
+                  }
+                },
+              ),
+              Gap(34),
+              SocialLogin(),
+            ],
           ),
         ),
-      );
+      ),
+    );
   }
 }

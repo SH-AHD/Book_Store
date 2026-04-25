@@ -11,7 +11,7 @@ class AppTextField extends StatefulWidget {
     this.prefixPath,
     this.isPass = false,
     this.validator,
-    this.onChanged
+    this.onChanged,
   });
   final String hintText;
   final String? suffixPath;

@@ -2,7 +2,7 @@
 class EndPoints {
   static const String baseUrl = "https://codingarabic.online/api";
 
-// Auth 
+  // Auth
   static const String login = "/login";
   static const String register = "/register";
   static const String forgetPassword = "/forget-password";
@@ -12,8 +12,13 @@ class EndPoints {
   static const String verifyEmail = "/verify-email";
   static const String logout = "/logout";
 
-// Home
+  // Slider
+  static const String sliders = "/sliders";
 
-
-
+  // Products
+  static const String products = "/products";
+  static const String bestSeller = "/products-bestseller";
+  static const String newArrivals = "/products-new-arrivals";
+  static const String productsFilter = "/products-filter";
+  static const String productsSearch = "/products-search";
 }
