@@ -10,7 +10,7 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitState());
 
   List<Slider> sliders = [];
-List<Product> bestSellerProducts = [];
+  List<Product> bestSellerProducts = [];
 
   Future<void> getInitData() async {
     emit(HomeLoadingState());
@@ -26,7 +26,7 @@ List<Product> bestSellerProducts = [];
       if (slidersRes != null || bestSellersRes != null) {
         sliders = slidersRes?.data?.sliders ?? [];
         bestSellerProducts = bestSellersRes?.data?.products ?? [];
-       
+
         emit(HomeSuccessState());
       }
     } catch (error) {

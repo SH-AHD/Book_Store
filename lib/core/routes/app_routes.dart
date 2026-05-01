@@ -6,10 +6,13 @@ import 'package:bookia/features/auth/presentation/forget_password/pages/password
 import 'package:bookia/features/auth/presentation/forget_password/pages/reset_password_screen.dart';
 import 'package:bookia/features/auth/presentation/login_register/pages/login_screen.dart';
 import 'package:bookia/features/auth/presentation/login_register/pages/register_screen.dart';
-import 'package:bookia/features/details/pages/details_screen.dart';
+import 'package:bookia/features/details/presentation/pages/details_screen.dart';
 import 'package:bookia/features/home/data/models/all_products_response/product.dart';
 import 'package:bookia/features/home/presentation/pages/home_screen.dart';
 import 'package:bookia/features/main/main_app_screen.dart';
+import 'package:bookia/features/search/data/repository/search_repo.dart';
+import 'package:bookia/features/search/presentation/cubit/search_cubit.dart';
+import 'package:bookia/features/search/presentation/pages/search_screen.dart';
 import 'package:bookia/features/splash/splash_screen.dart';
 import 'package:bookia/features/welcome/welocme_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -81,13 +84,21 @@ class AppRoutes {
         builder: (context, state) => const PasswordChangedScreen(),
       ),
 
-
-  GoRoute(
+      GoRoute(
         path: Routes.details,
-        builder: (context, state) =>  DetailsScreen(
-book:state.extra as Product
-
-        ),
+        builder: (context, state) =>
+            DetailsScreen(book: state.extra as Product),
+      ),
+ GoRoute(
+  
+        
+        path: Routes.search,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) => SearchCubit(SearchRepo()),
+            child: SearchScreen(),
+          );
+        },
       ),
 
 

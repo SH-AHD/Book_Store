@@ -48,7 +48,7 @@ class WelcomeScreen extends StatelessWidget {
                     pushPage(context, Routes.register);
                   },
                   borderColor: AppColors.darkColor,
-                  color: AppColors.backgroundColor,
+                  color: AppColors.whiteColor,
                   textColor: AppColors.darkColor,
                 ),
                 Spacer(),

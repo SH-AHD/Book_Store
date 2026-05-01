@@ -23,13 +23,13 @@ class _SplashScreenState extends State<SplashScreen> {
 
     bool isLoggedIn = SharedPref.getToken().isNotEmpty;
     Future.delayed(const Duration(seconds: 3), () {
-      // pushReplacementPage(context, Routes.main);
-log("$isLoggedIn");
+    
       if (isLoggedIn) {
         pushReplacementPage(context, Routes.main);
       } else {
         pushReplacementPage(context, Routes.welcome);
       }
+
     });
   }
 

@@ -14,14 +14,14 @@ class SocialLogin extends StatelessWidget {
       children: [
         Row(
           children: [
-            Expanded(child: Divider(height: 2, color: AppColors.borderColor)),
+            Expanded(child: Divider(height: 2, color: AppColors.semiWhiteBorderColor)),
             Gap(47),
             Text(
               "Or",
               style: TextStyles.font14.copyWith(color: AppColors.darkGrayColor),
             ),
             Gap(47),
-            Expanded(child: Divider(height: 2, color: AppColors.borderColor)),
+            Expanded(child: Divider(height: 2, color: AppColors.semiWhiteBorderColor)),
           ],
         ),
         Gap(21),
@@ -59,8 +59,8 @@ class SocialButton extends StatelessWidget {
         padding: EdgeInsets.all(15),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: AppColors.backgroundColor,
-          border: Border.all(color: AppColors.borderColor),
+          color: AppColors.whiteColor,
+          border: Border.all(color: AppColors.semiWhiteBorderColor),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

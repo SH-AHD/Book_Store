@@ -17,7 +17,7 @@ class PinField extends StatelessWidget {
         fontWeight: FontWeight.w700,
       ),
       decoration: BoxDecoration(
-        border: Border.all(color: AppColors.borderColor),
+        border: Border.all(color: AppColors.semiWhiteBorderColor),
         borderRadius: BorderRadius.circular(8),
         color: AppColors.lightGrayColor,
       ),
@@ -26,14 +26,14 @@ class PinField extends StatelessWidget {
     final focusedPinTheme = defaultPinTheme.copyDecorationWith(
       border: Border.all(color: AppColors.primaryColor),
       borderRadius: BorderRadius.circular(8),
-      color: AppColors.backgroundColor,
+      color: AppColors.whiteColor,
     );
 
     final submittedPinTheme = defaultPinTheme.copyWith(
       decoration: defaultPinTheme.decoration!.copyWith(
         border: Border.all(color: AppColors.primaryColor),
         borderRadius: BorderRadius.circular(8),
-        color: AppColors.backgroundColor,
+        color: AppColors.whiteColor,
       ),
     );
 

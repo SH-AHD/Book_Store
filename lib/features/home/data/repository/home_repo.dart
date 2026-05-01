@@ -22,7 +22,7 @@ class HomeRepo {
       var response = await DioProvider.get(endpoint: EndPoints.bestSeller);
       return BestSellerResponse.fromJson(response.data);
     } on DioException catch (error) {
-     dioErrorHandler(error);
+      dioErrorHandler(error);
     }
     return null;
   }

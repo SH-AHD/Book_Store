@@ -47,7 +47,7 @@ class DetailsScreen extends StatelessWidget {
             ),
 
             MainButton(
-              width: MediaQuery.sizeOf(context).width * 0.3,
+              width: MediaQuery.sizeOf(context).width * 0.5,
               height: MediaQuery.sizeOf(context).height * 0.045,
               text: "Add To Cart",
               onPressed: () {},
@@ -68,7 +68,7 @@ class DetailsScreen extends StatelessWidget {
               Hero(
                 tag: book.id ?? "",
                 child: CustomCachedNetworkImage(
-                  url: book.image??"",
+                  url: book.image ?? "",
                   width: MediaQuery.sizeOf(context).width * 0.5,
                   height: MediaQuery.sizeOf(context).height * 0.4,
                 ),

@@ -1,6 +1,5 @@
 import 'package:bookia/features/home/data/models/all_products_response/product.dart';
 
-
 class Data {
   List<Product>? products;
 

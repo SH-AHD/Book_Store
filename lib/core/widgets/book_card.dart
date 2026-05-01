@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 class BookCard extends StatelessWidget {
-  const  BookCard({super.key, required this.book});
+  const BookCard({super.key, required this.book});
   final Product book;
   @override
   Widget build(BuildContext context) {
@@ -21,10 +21,10 @@ class BookCard extends StatelessWidget {
         padding: EdgeInsets.all(11),
         // height: 300,
         // width: 165,
-        height: MediaQuery.of(context).size.height*0.2,
-        width: MediaQuery.of(context).size.width*0.3,
+        height: MediaQuery.of(context).size.height * 0.2,
+        width: MediaQuery.of(context).size.width * 0.3,
         decoration: BoxDecoration(
-          color: AppColors.cardBgColor,
+          color: AppColors.whiteColor,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
@@ -32,8 +32,8 @@ class BookCard extends StatelessWidget {
           children: [
             Expanded(
               child: Hero(
-                tag: book.id??"",
-                child: CustomCachedNetworkImage(url: book.image??""),
+                tag: book.id ?? "",
+                child: CustomCachedNetworkImage(url: book.image ?? ""),
               ),
             ),
             const Gap(5),
@@ -49,8 +49,8 @@ class BookCard extends StatelessWidget {
               children: [
                 Text("₹${book.price ?? ""}", style: TextStyles.font18),
                 MainButton(
-                  width: MediaQuery.sizeOf(context).width*0.3,
-                  height: MediaQuery.sizeOf(context).height*0.045,
+                  width: MediaQuery.sizeOf(context).width * 0.2,
+                  height: MediaQuery.sizeOf(context).height * 0.048,
                   text: "Buy",
                   onPressed: () {},
                   color: AppColors.darkColor,

@@ -14,7 +14,7 @@ class AuthRepo {
       );
       if (response.statusCode == 201 || response.statusCode == 200) {
         return AuthResponse.fromJson(response.data);
-       }
+      }
       // else {
       //   throw response.data['message'] ??
       //       "Something went wrong. Try again letter";
@@ -49,7 +49,7 @@ class AuthRepo {
 
       return AuthResponse.fromJson(response.data);
     } on DioException catch (error) {
-     dioErrorHandler(error);
+      dioErrorHandler(error);
     }
     return null;
   }
@@ -78,7 +78,7 @@ class AuthRepo {
       );
       return AuthResponse.fromJson(response.data);
     } on DioException catch (error) {
-     dioErrorHandler(error);
+      dioErrorHandler(error);
     }
 
     return null;
@@ -92,7 +92,7 @@ class AuthRepo {
       );
       return AuthResponse.fromJson(response.data);
     } on DioException catch (error) {
-     dioErrorHandler(error);
+      dioErrorHandler(error);
     }
 
     return null;
@@ -110,7 +110,7 @@ class AuthRepo {
       );
       return AuthResponse.fromJson(response.data);
     } on DioException catch (error) {
-    dioErrorHandler(error);
+      dioErrorHandler(error);
     }
 
     return null;
@@ -124,7 +124,7 @@ class AuthRepo {
       );
       return AuthResponse.fromJson(response.data);
     } on DioException catch (error) {
-     dioErrorHandler(error);
+      dioErrorHandler(error);
     }
 
     return null;
