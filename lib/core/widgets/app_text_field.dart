@@ -10,6 +10,7 @@ class AppTextField extends StatefulWidget {
     this.suffixPath,
     this.prefixPath,
     this.isPass = false,
+    this.isSearch = false,
     this.validator,
     this.onChanged,
   });
@@ -17,6 +18,7 @@ class AppTextField extends StatefulWidget {
   final String? suffixPath;
   final String? prefixPath;
   final bool isPass;
+  final bool isSearch;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
@@ -26,6 +28,7 @@ class AppTextField extends StatefulWidget {
 
 class _AppTextFieldState extends State<AppTextField> {
   late bool obscure;
+
   @override
   void initState() {
     super.initState();
@@ -35,7 +38,12 @@ class _AppTextFieldState extends State<AppTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      onChanged: widget.onChanged,
+      onChanged: (value) {
+        setState(() {});
+        if (widget.onChanged != null) {
+          widget.onChanged!(value);
+        }
+      },
       validator: widget.validator,
       obscureText: obscure,
       controller: widget.controller,
@@ -61,15 +69,26 @@ class _AppTextFieldState extends State<AppTextField> {
                   obscure ? Icons.visibility_off : Icons.remove_red_eye,
                 ),
               )
-            : (widget.suffixPath != null
-                  ? Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: SvgPic(path: widget.suffixPath!),
+            : (widget.isSearch &&
+                      widget.controller != null &&
+                      widget.controller!.text.isNotEmpty
+                  ? IconButton(
+                      icon: const Icon(Icons.clear, color: AppColors.grayColor),
+                      onPressed: () {
+                        widget.controller!.clear();
+                        if (widget.onChanged != null) widget.onChanged!("");
+                        setState(() {});
+                      },
                     )
-                  : null),
+                  : (widget.suffixPath != null
+                        ? Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: SvgPic(path: widget.suffixPath!),
+                          )
+                        : null)),
 
         filled: true,
-        fillColor: AppColors.lightGrayColor,
+        fillColor: AppColors.whiteColor,
       ),
       onTapUpOutside: (event) {
         FocusManager.instance.primaryFocus?.unfocus();

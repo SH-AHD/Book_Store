@@ -19,7 +19,6 @@ import 'package:gap/gap.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
-  TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthCubit, AuthState>(

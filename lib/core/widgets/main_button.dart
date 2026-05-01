@@ -11,28 +11,31 @@ class MainButton extends StatelessWidget {
     this.color = AppColors.primaryColor,
     this.borderColor,
     required this.onPressed,
-    this.textColor = AppColors.backgroundColor,
+    this.textColor = AppColors.whiteColor,
   });
   final String text;
   final double width;
   final double height;
   final Color color;
   final Color? borderColor;
-  void Function()? onPressed;
+  final VoidCallback? onPressed;
   final Color textColor;
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        minimumSize: Size(width, height),
-        backgroundColor: color,
-        side: borderColor != null ? BorderSide(color: borderColor!) : null,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+    return SizedBox(
+      width: width,
+      height: height,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: color,
+          side: borderColor != null ? BorderSide(color: borderColor!) : null,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        ),
+      
+        onPressed: onPressed,
+        child: Text(text, style: TextStyles.font15.copyWith(color: textColor)),
       ),
-
-      onPressed: onPressed,
-      child: Text(text, style: TextStyles.font15.copyWith(color: textColor)),
     );
   }
 }

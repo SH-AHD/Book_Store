@@ -1,7 +1,7 @@
-
 import 'package:bookia/core/styles/app_colors.dart';
 import 'package:bookia/core/styles/text_styles.dart';
 import 'package:bookia/core/widgets/body_view.dart';
+import 'package:bookia/core/widgets/custom_error_views.dart';
 import 'package:bookia/core/widgets/shimmer/shimmer_grid_view.dart';
 import 'package:bookia/features/home/data/models/all_products_response/product.dart';
 import 'package:bookia/features/home/presentation/cubit/home_cubit.dart';
@@ -33,7 +33,7 @@ class BestSellerBuilder extends StatelessWidget {
                   itemCount: 6,
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
-                  itemHeight:  MediaQuery.of(context).size.height*0.2,
+                  itemHeight: MediaQuery.of(context).size.height * 0.2,
                   crossAxisCount: 2,
                   childAspectRatio: .62,
                 ),
@@ -41,16 +41,7 @@ class BestSellerBuilder extends StatelessWidget {
             ),
           );
         } else if (state is HomeErrorState) {
-          return Center(
-            child: Column(
-              children: [
-
-                Icon(Icons.error, color: AppColors.redColor, size: 30),
-              Gap(20),
-              Text("Something went wrong..."),
-              ],
-            ),
-          );
+          errorMsgView();
         }
         return BodyView(
           child: Column(

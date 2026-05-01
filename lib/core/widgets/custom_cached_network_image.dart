@@ -6,9 +6,11 @@ class CustomCachedNetworkImage extends StatelessWidget {
   const CustomCachedNetworkImage({
     super.key,
     required this.url,
-    this.width=double.infinity,
-    this.height=100,  this.fit=BoxFit.cover, this.errorWidget,
-    this.raduis=10,
+    this.width = double.infinity,
+    this.height = 100,
+    this.fit = BoxFit.cover,
+    this.errorWidget,
+    this.raduis = 10,
   });
 
   final String url;
@@ -16,23 +18,22 @@ class CustomCachedNetworkImage extends StatelessWidget {
   final double height;
   final BoxFit fit;
   final Widget? errorWidget;
-    final double raduis;
+  final double raduis;
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(raduis),
       child: CachedNetworkImage(
-       imageUrl: url,
-       width: width,
-       height: height,
-       fit: fit,
-       progressIndicatorBuilder: (context, url, downloadProgress) => 
-              errorWidget?? CustomShimmerWidget(width: width, height: height,
-               borderRadius: 10,
-               ),
-       errorWidget: (context, url, error) => Icon(Icons.error),
-    ),
+        imageUrl: url,
+        width: width,
+        height: height,
+        fit: fit,
+        progressIndicatorBuilder: (context, url, downloadProgress) =>
+            errorWidget ??
+            CustomShimmerWidget(width: width, height: height, borderRadius: 10),
+        errorWidget: (context, url, error) => Icon(Icons.error),
+      ),
     );
   }
 }

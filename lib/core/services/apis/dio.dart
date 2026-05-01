@@ -15,6 +15,8 @@ class DioProvider {
         },
         receiveDataWhenStatusError: true,
         connectTimeout: const Duration(seconds: 30),
+        receiveTimeout: const Duration(seconds: 30),
+        sendTimeout: const Duration(seconds: 30),
       ),
     );
     dio.interceptors.add(

@@ -25,16 +25,18 @@ class _HomeSliderState extends State<HomeSlider> {
       builder: (context, state) {
         var sliders = context.read<HomeCubit>().sliders;
         if (state is HomeLoadingState) {
-         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child:  CustomShimmerWidget(
-            width: double.infinity, height: 170,
-            borderRadius: 10,),
-         );
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: CustomShimmerWidget(
+              width: double.infinity,
+              height: 170,
+              borderRadius: 10,
+            ),
+          );
         } else if (state is HomeErrorState) {
-       return Center(
-        child: Icon(Icons.error, size: 10,color: AppColors.redColor,),
-       );
+          return Center(
+            child: Icon(Icons.error, size: 10, color: AppColors.redColor),
+          );
         }
 
         return Column(

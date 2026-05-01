@@ -17,7 +17,7 @@ void showErrorDialog(BuildContext context, String errorMsg) {
         children: [
           Icon(
             Icons.error_outline,
-            color: AppColors.backgroundColor,
+            color: AppColors.whiteColor,
             weight: 10,
           ),
           Gap(10),
