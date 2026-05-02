@@ -16,7 +16,7 @@ void authListener({
     navigationMethod(context, routName, extra: extra);
   } else if (state is AuthErrorState) {
     popPage(context);
-    showErrorDialog(context, state.error);
+    showMsgDialog(context, state.error);
   } else if (state is AuthLoadingState) {
     showLoadingDialog(context);
   }

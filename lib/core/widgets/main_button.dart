@@ -3,7 +3,7 @@ import 'package:bookia/core/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class MainButton extends StatelessWidget {
-  MainButton({
+  const MainButton({
     super.key,
     required this.text,
     this.width = double.infinity,

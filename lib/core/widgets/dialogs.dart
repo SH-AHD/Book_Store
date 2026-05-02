@@ -1,27 +1,44 @@
+import 'package:bookia/core/constants/app_assets.dart';
 import 'package:bookia/core/styles/app_colors.dart';
-import 'package:bookia/core/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:lottie/lottie.dart';
 
-void showErrorDialog(BuildContext context, String errorMsg) {
+enum DialogType { error, success, warning }
+
+void showMsgDialog(
+  BuildContext context,
+  String message, [
+  DialogType type = DialogType.error,
+]) {
+  Color color;
+  IconData icon;
+  switch (type) {
+    case DialogType.error:
+      color = AppColors.redColor;
+      icon = Icons.error;
+      break;
+    case DialogType.success:
+      color = Colors.green;
+      icon = Icons.check_circle;
+      break;
+    case DialogType.warning:
+      color = Colors.amber;
+      icon = Icons.warning;
+      break;
+  }
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       behavior: SnackBarBehavior.floating,
-      margin: const EdgeInsets.all(5),
+      margin: const EdgeInsets.all(10),
       elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadiusGeometry.circular(10),
-      ),
-      backgroundColor: AppColors.redColor,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      backgroundColor: color,
       content: Row(
         children: [
-          Icon(
-            Icons.error_outline,
-            color: AppColors.whiteColor,
-            weight: 10,
-          ),
-          Gap(10),
-          Expanded(child: Text(errorMsg, style: TextStyles.font14)),
+          Icon(icon, color: AppColors.whiteColor, size: 20),
+          const Gap(10),
+          Text(message),
         ],
       ),
     ),
@@ -30,9 +47,8 @@ void showErrorDialog(BuildContext context, String errorMsg) {
 
 void showLoadingDialog(BuildContext context) {
   showDialog(
-    barrierDismissible: false,
-
     context: context,
-    builder: (_) => const Center(child: CircularProgressIndicator()),
+    barrierDismissible: false,
+    builder: (context) => Center(child: Lottie.asset(AppAssets.loadingJson)),
   );
 }

@@ -1,21 +1,27 @@
+import 'package:bookia/core/constants/app_assets.dart';
 import 'package:bookia/core/helpers/navigation.dart';
 import 'package:bookia/core/routes/routes.dart';
 import 'package:bookia/core/styles/app_colors.dart';
 import 'package:bookia/core/styles/text_styles.dart';
 import 'package:bookia/core/widgets/main_button.dart';
 import 'package:bookia/core/widgets/custom_cached_network_image.dart';
+import 'package:bookia/core/widgets/svg_pic.dart';
 import 'package:bookia/features/home/data/models/all_products_response/product.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 class BookCard extends StatelessWidget {
-  const BookCard({super.key, required this.book});
+  const BookCard({super.key, required this.book,  this.onRemove, this.onRefresh});
   final Product book;
+  final VoidCallback? onRemove;
+  final VoidCallback? onRefresh;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        pushPage(context, Routes.details, extra: book);
+        pushPage(context, Routes.details, extra: book).then((value) {
+          onRefresh?.call();
+        });
       },
       child: Container(
         padding: EdgeInsets.all(11),
@@ -48,7 +54,12 @@ class BookCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text("₹${book.price ?? ""}", style: TextStyles.font18),
-                MainButton(
+                
+                onRemove!=null?
+                GestureDetector(
+                  onTap: onRemove,
+                  child: SvgPic(path:  AppAssets.cancleSvg))
+                : MainButton(
                   width: MediaQuery.sizeOf(context).width * 0.2,
                   height: MediaQuery.sizeOf(context).height * 0.048,
                   text: "Buy",
