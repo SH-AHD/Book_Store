@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-void pushPage(BuildContext context, String routeName, {Object? extra}) {
-  context.push(routeName, extra: extra);
+Future<T?> pushPage<T>(BuildContext context, String routeName, {Object? extra}) {
+  return context.push<T>(routeName, extra: extra);
 }
 
 void pushReplacementPage(

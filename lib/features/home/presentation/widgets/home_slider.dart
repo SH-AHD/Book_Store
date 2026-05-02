@@ -1,6 +1,4 @@
-import 'package:bookia/core/helpers/navigation.dart';
 import 'package:bookia/core/styles/app_colors.dart';
-import 'package:bookia/core/widgets/dialogs.dart';
 import 'package:bookia/core/widgets/shimmer/custom_shimmer_widget.dart';
 import 'package:bookia/features/home/presentation/cubit/home_cubit.dart';
 import 'package:bookia/features/home/presentation/cubit/home_state.dart';
