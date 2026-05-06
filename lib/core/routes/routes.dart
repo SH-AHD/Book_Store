@@ -15,5 +15,6 @@ class Routes {
 
   static const String details = "/details";
   static const String search = "/search";
+  static const String wishlist = "/wishlist";
 
 }

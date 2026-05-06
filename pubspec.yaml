@@ -17,6 +17,7 @@ dependencies:
   flutter_svg: ^2.2.4
   gap: ^3.0.1
   go_router: ^17.1.0
+  lottie: ^3.3.3
   pinput: ^6.0.2
   pretty_dio_logger: ^1.4.0
   readmore: ^3.0.0
@@ -34,6 +35,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/imgs/
+    - assets/lottie/
 
   fonts:
     - family: DMSerifDisplay

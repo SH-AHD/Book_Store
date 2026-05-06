@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:bookia/core/constants/app_assets.dart';
 import 'package:bookia/core/helpers/navigation.dart';

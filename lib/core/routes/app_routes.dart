@@ -23,6 +23,7 @@ class AppRoutes {
 
   static final routes = GoRouter(
     routes: [
+
       GoRoute(
         path: Routes.splash,
         builder: (context, state) => const SplashScreen(),
@@ -46,9 +47,6 @@ class AppRoutes {
           child: RegisterScreen(),
         ),
       ),
-
-      GoRoute(path: Routes.home, builder: (context, state) => HomeScreen()),
-      GoRoute(path: Routes.main, builder: (context, state) => MainAppScreen()),
 
       GoRoute(
         path: Routes.forgetPass,
@@ -84,14 +82,18 @@ class AppRoutes {
         builder: (context, state) => const PasswordChangedScreen(),
       ),
 
+      GoRoute(path: Routes.home, builder: (context, state) => HomeScreen()),
+      
+      GoRoute(path: Routes.main, builder: (context, state) => MainAppScreen()),
+
+
       GoRoute(
         path: Routes.details,
         builder: (context, state) =>
             DetailsScreen(book: state.extra as Product),
       ),
- GoRoute(
-  
-        
+
+      GoRoute(
         path: Routes.search,
         builder: (context, state) {
           return BlocProvider(
@@ -101,7 +103,7 @@ class AppRoutes {
         },
       ),
 
-
+     
     ],
   );
 }

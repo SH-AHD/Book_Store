@@ -1,4 +1,3 @@
-import 'package:bookia/core/styles/app_colors.dart';
 import 'package:bookia/core/styles/text_styles.dart';
 import 'package:bookia/core/widgets/body_view.dart';
 import 'package:bookia/core/widgets/custom_error_views.dart';
