@@ -15,7 +15,6 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-
         title: SvgPic(path: AppAssets.logo, w: 100),
         actions: [
           IconButton(

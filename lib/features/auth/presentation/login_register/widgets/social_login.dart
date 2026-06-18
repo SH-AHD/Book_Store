@@ -14,14 +14,18 @@ class SocialLogin extends StatelessWidget {
       children: [
         Row(
           children: [
-            Expanded(child: Divider(height: 2, color: AppColors.semiWhiteBorderColor)),
+            Expanded(
+              child: Divider(height: 2, color: AppColors.semiWhiteBorderColor),
+            ),
             Gap(47),
             Text(
               "Or",
               style: TextStyles.font14.copyWith(color: AppColors.darkGrayColor),
             ),
             Gap(47),
-            Expanded(child: Divider(height: 2, color: AppColors.semiWhiteBorderColor)),
+            Expanded(
+              child: Divider(height: 2, color: AppColors.semiWhiteBorderColor),
+            ),
           ],
         ),
         Gap(21),

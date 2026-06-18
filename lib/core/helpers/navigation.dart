@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-Future<T?> pushPage<T>(BuildContext context, String routeName, {Object? extra}) {
+Future<T?> pushPage<T>(
+  BuildContext context,
+  String routeName, {
+  Object? extra,
+}) {
   return context.push<T>(routeName, extra: extra);
 }
 

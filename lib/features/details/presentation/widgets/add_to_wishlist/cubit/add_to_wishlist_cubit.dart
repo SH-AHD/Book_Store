@@ -4,60 +4,49 @@ import 'package:bookia/features/wishlist/data/repository/wishlist_repo.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AddToWishlistCubit extends Cubit<AddToWishlistState>{
+class AddToWishlistCubit extends Cubit<AddToWishlistState> {
+  AddToWishlistCubit() : super(AddToWishlistInitState());
 
-AddToWishlistCubit():super(AddToWishlistInitState());
+  Future<void> addToWishList(int productId) async {
+    emit(AddToWishlistLoadingState());
 
-Future<void> addToWishList(int productId)async{
-emit(AddToWishlistLoadingState());
+    try {
+      var response = await WishlistRepo.addToWishList(productId);
 
-
-try{
-
-var response=await WishlistRepo.addToWishList(productId);
-  
-  if(response!=null&&response.data!=null){
-    List<String> wishlistIds = SharedPref.getWishlistIds();
-    if (!wishlistIds.contains(productId.toString())) {
-      wishlistIds.add(productId.toString());
-      await SharedPref.saveWishlistIds(wishlistIds);
+      if (response != null && response.data != null) {
+        List<String> wishlistIds = SharedPref.getWishlistIds();
+        if (!wishlistIds.contains(productId.toString())) {
+          wishlistIds.add(productId.toString());
+          await SharedPref.saveWishlistIds(wishlistIds);
+        }
+        emit(AddToWishlistSuccessState(response.message ?? ""));
+      } else {
+        emit(AddToWishlistErrorEState(response?.message ?? "Error"));
+      }
+    } on Exception catch (e) {
+      emit(AddToWishlistErrorEState(e.toString()));
     }
-  emit(AddToWishlistSuccessState(response.message??""));
-  }else{
-    emit(AddToWishlistErrorEState(response?.message??"Error"));
   }
-} on Exception catch (e) {
-  
-  emit(AddToWishlistErrorEState(e.toString()));
-}
 
-}
+  Future<void> removeFromWishList(int productId) async {
+    emit(AddToWishlistLoadingState());
+    try {
+      var response = await WishlistRepo.removeFromWishList(productId);
 
-
-
-Future<void> removeFromWishList(int productId)async{
-emit(AddToWishlistLoadingState());
-try {
-  var response=await WishlistRepo.removeFromWishList(productId);
-  
-  if(response!=null&&response.data!=null){
-    List<String> wishlistIds = SharedPref.getWishlistIds();
-    wishlistIds.remove(productId.toString());
-    await SharedPref.saveWishlistIds(wishlistIds);
-  emit(AddToWishlistSuccessState(response.message??""));
-  }else{
-    emit(AddToWishlistErrorEState(response?.message??"Error"));
+      if (response != null && response.data != null) {
+        List<String> wishlistIds = SharedPref.getWishlistIds();
+        wishlistIds.remove(productId.toString());
+        await SharedPref.saveWishlistIds(wishlistIds);
+        emit(AddToWishlistSuccessState(response.message ?? ""));
+      } else {
+        emit(AddToWishlistErrorEState(response?.message ?? "Error"));
+      }
+    } on Exception catch (e) {
+      emit(AddToWishlistErrorEState(e.toString()));
+    }
   }
-} on Exception catch (e) {
-  
-  emit(AddToWishlistErrorEState(e.toString()));
-}
 
-}
-
-
- bool isProductInWishlist(int productId) {
+  bool isProductInWishlist(int productId) {
     return SharedPref.getWishlistIds().contains(productId.toString());
   }
-
 }

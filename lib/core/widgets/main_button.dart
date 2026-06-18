@@ -32,9 +32,11 @@ class MainButton extends StatelessWidget {
           side: borderColor != null ? BorderSide(color: borderColor!) : null,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
-      
+
         onPressed: onPressed,
-        child: Text(text, style: TextStyles.font15.copyWith(color: textColor)),
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(text, style: TextStyles.font16.copyWith(color: textColor))),
       ),
     );
   }

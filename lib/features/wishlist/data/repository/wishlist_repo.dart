@@ -1,4 +1,3 @@
-import 'package:bookia/core/routes/routes.dart';
 import 'package:bookia/core/services/apis/api_error_handler.dart';
 import 'package:bookia/core/services/apis/dio.dart';
 import 'package:bookia/core/services/apis/endpoints.dart';
@@ -8,74 +7,62 @@ import 'package:dio/dio.dart';
 
 class WishlistRepo {
 
-static String token=SharedPref.getToken();
+  static Future<WishlistResponse?> getWishList() async {
+    String token = SharedPref.getToken();
+    try {
+      var response = await DioProvider.get(
+        endpoint: EndPoints.wishlist,
+        headers: {'Authorization': 'Bearer $token'},
+      );
 
-static Future<WishlistResponse?> getWishList() async{
-
-try{
-  var response=await DioProvider.get(
-    endpoint: EndPoints.wishlist,
-    headers:{'Authorization':'Bearer $token'}
-    );
-
-  if(response.statusCode==200){
-return WishlistResponse.fromJson(response.data);
-  }else{
-    print("ERRROOOOORRR");
+      if (response.statusCode == 200) {
+        return WishlistResponse.fromJson(response.data);
+      } else {
+        return null;
+      }
+    } on DioException catch (error) {
+      dioErrorHandler(error);
+    }
     return null;
   }
-  }on DioException catch(error){
-dioErrorHandler(error);
-  }
-return null;
-}
 
-static Future<WishlistResponse?> removeFromWishList(int productId) async{
+  static Future<WishlistResponse?> removeFromWishList(int productId) async {
+    String token = SharedPref.getToken();
+    try {
+      var response = await DioProvider.post(
+        endpoint: EndPoints.removeFromWishlist,
+        data: {"product_id": productId},
+        headers: {'Authorization': 'Bearer $token'},
+      );
 
-try{
-  var response=await DioProvider.post(
-    endpoint: EndPoints.removeFromWishlist,
-    data:{"product_id":productId},
-    headers:{'Authorization':'Bearer $token'}
-    );
-
-  if(response.statusCode==200){
-return WishlistResponse.fromJson(response.data);
-  }else{
-    print("ERRROOOOORRR");
+      if (response.statusCode == 200) {
+        return WishlistResponse.fromJson(response.data);
+      } else {
+        return null;
+      }
+    } on DioException catch (error) {
+      dioErrorHandler(error);
+    }
     return null;
   }
-  }on DioException catch(error){
-dioErrorHandler(error);
-  }
-return null;
-}
 
+  static Future<WishlistResponse?> addToWishList(int productId) async {
+    String token = SharedPref.getToken();
+    try {
+      var response = await DioProvider.post(
+        endpoint: EndPoints.addToWishlist,
+        data: {"product_id": productId},
+        headers: {'Authorization': 'Bearer $token'},
+      );
 
-static Future<WishlistResponse?> addToWishList(int productId) async{
-
-try{
-  var response=await DioProvider.post(
-    endpoint: EndPoints.addToWishlist,
-    data:{"product_id":productId},
-    headers:{'Authorization':'Bearer $token'}
-    );
-
-  if(response.statusCode==200){
-return WishlistResponse.fromJson(response.data);
-  }else{
-    print("ERRROOOOORRR");
+      if (response.statusCode == 200) {
+        return WishlistResponse.fromJson(response.data);
+      } else {
+        return null;
+      }
+    } on DioException catch (error) {
+      dioErrorHandler(error);
+    }
     return null;
   }
-  }on DioException catch(error){
-dioErrorHandler(error);
-  }
-return null;
-}
-
-
-
-
-
-
 }
