@@ -17,4 +17,9 @@ class Routes {
   static const String search = "/search";
   static const String wishlist = "/wishlist";
 
+  static const String placeOrder = "/placeOrder";
+  static const String account = "/account";
+
+
+
 }

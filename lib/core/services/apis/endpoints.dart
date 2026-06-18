@@ -1,5 +1,5 @@
-// Base
 class EndPoints {
+  // Base
   static const String baseUrl = "https://codingarabic.online/api";
 
   // Auth

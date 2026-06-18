@@ -13,9 +13,10 @@ class AppThemes {
       onSurface: AppColors.blackfontColor,
     ),
 
-    appBarTheme: AppBarTheme(backgroundColor: AppColors.latteColor,
-    systemOverlayStyle: SystemUiOverlayStyle.dark,
-    surfaceTintColor: Colors.transparent,
+    appBarTheme: AppBarTheme(
+      backgroundColor: AppColors.latteColor,
+      systemOverlayStyle: SystemUiOverlayStyle.dark,
+      surfaceTintColor: Colors.transparent,
     ),
 
     inputDecorationTheme: InputDecorationTheme(
@@ -24,13 +25,12 @@ class AppThemes {
         borderSide: BorderSide(color: AppColors.semiWhiteBorderColor),
       ),
 
-focusedBorder:OutlineInputBorder(
+      focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
         borderSide: BorderSide(color: AppColors.primaryColor),
       ),
 
       hintStyle: TextStyles.font15.copyWith(color: AppColors.grayColor),
-
     ),
 
     bottomNavigationBarTheme: BottomNavigationBarThemeData(

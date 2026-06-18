@@ -1,4 +1,3 @@
-
 import 'package:bookia/core/constants/app_assets.dart';
 import 'package:bookia/core/helpers/navigation.dart';
 import 'package:bookia/core/styles/app_colors.dart';
@@ -7,7 +6,7 @@ import 'package:bookia/core/widgets/svg_pic.dart';
 import 'package:bookia/features/details/presentation/widgets/add_to_wishlist/cubit/add_to_wishlist_cubit.dart';
 import 'package:bookia/features/details/presentation/widgets/add_to_wishlist/cubit/add_to_wishlist_state.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';  
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddToWishlistButton extends StatelessWidget {
   const AddToWishlistButton({super.key, required this.productId});

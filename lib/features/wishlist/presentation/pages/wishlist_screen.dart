@@ -16,7 +16,7 @@ class WishlistScreen extends StatelessWidget {
   const WishlistScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    WishlistCubit cubit =context.read<WishlistCubit>();
+    WishlistCubit cubit = context.read<WishlistCubit>();
     return Scaffold(
       appBar: AppBar(centerTitle: true, title: const Text('Wishlist')),
       body: BodyView(
@@ -33,25 +33,31 @@ class WishlistScreen extends StatelessWidget {
               );
             } else if (state is WishlistSuccessStates) {
               if (books.isEmpty) {
-                        return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPic(path: AppAssets.bookmarkSvg,color: AppColors.darkColor,w: 70,),
-                  Gap(30),
-                  Text(
-                    "Start adding your favorite books!",
-                    style: TextStyles.font15.copyWith(color: AppColors.darkColor),
-                    textAlign: TextAlign.center,
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPic(
+                        path: AppAssets.bookmarkSvg,
+                        color: AppColors.darkColor,
+                        w: 70,
+                      ),
+                      Gap(30),
+                      Text(
+                        "Start adding your favorite books!",
+                        style: TextStyles.font15.copyWith(
+                          color: AppColors.darkColor,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            );
-                      }
+                );
+              }
 
               return GridView.builder(
                 itemCount: books.length,
-              
+
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 15,
@@ -60,12 +66,12 @@ class WishlistScreen extends StatelessWidget {
                 ),
                 itemBuilder: (context, index) => BookCard(
                   book: books[index],
-                onRemove: () {
-                  cubit.removeFromWishList(books[index].id!);
-                },
-                onRefresh: () {
-                  context.read<WishlistCubit>().getWishList();
-                },
+                  onRemove: () {
+                    cubit.removeFromWishList(books[index].id!);
+                  },
+                  onRefresh: () {
+                    context.read<WishlistCubit>().getWishList();
+                  },
                 ),
               );
             } else if (state is WishlistErrorStates) {
@@ -76,11 +82,17 @@ class WishlistScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SvgPic(path: AppAssets.bookmarkSvg,color: AppColors.darkColor,w: 70,),
+                  SvgPic(
+                    path: AppAssets.bookmarkSvg,
+                    color: AppColors.darkColor,
+                    w: 70,
+                  ),
                   Gap(30),
                   Text(
                     "Start adding your favorite books!",
-                    style: TextStyles.font15.copyWith(color: AppColors.darkColor),
+                    style: TextStyles.font15.copyWith(
+                      color: AppColors.darkColor,
+                    ),
                     textAlign: TextAlign.center,
                   ),
                 ],

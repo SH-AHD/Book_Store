@@ -17,8 +17,6 @@ class SearchCubit extends Cubit<SearchState> {
 
   Timer? _debounce;
 
-
-
   Future<void> search() async {
     if (_debounce?.isActive ?? false) _debounce!.cancel();
 
@@ -34,7 +32,8 @@ class SearchCubit extends Cubit<SearchState> {
       try {
         var results = await searchRepo.search(name: searchController.text);
         if (results != null) {
-          final List<Product> fetchedProducts = (results.data?.products as List?)?.cast<Product>() ?? [];
+          final List<Product> fetchedProducts =
+              (results.data?.products as List?)?.cast<Product>() ?? [];
           products = fetchedProducts;
           emit(SearchSuccessState(results.message, products));
         } else {
@@ -46,19 +45,16 @@ class SearchCubit extends Cubit<SearchState> {
     });
   }
 
+  void clearSearch() {
+    searchController.clear();
+    products = [];
+    emit(SearchInitState());
+  }
 
-void clearSearch() {
-  searchController.clear();
-  products = []; 
-  emit(SearchInitState());
-}
-
-    @override
+  @override
   Future<void> close() {
     _debounce?.cancel();
     searchController.dispose();
     return super.close();
   }
-
-
 }

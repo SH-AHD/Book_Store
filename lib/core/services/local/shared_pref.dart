@@ -45,7 +45,6 @@ class SharedPref {
     return prefs.getString(key) ?? '';
   }
 
-
   static Future<void> saveWishlistIds(List<String> ids) async {
     await prefs.setStringList(kWishlistIds, ids);
   }
@@ -53,6 +52,4 @@ class SharedPref {
   static List<String> getWishlistIds() {
     return prefs.getStringList(kWishlistIds) ?? [];
   }
-
-
 }

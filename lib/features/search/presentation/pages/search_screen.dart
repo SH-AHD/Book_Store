@@ -26,12 +26,12 @@ class SearchScreen extends StatelessWidget {
               controller: cubit.searchController,
               hintText: "Search Products",
               onChanged: (value) {
-                  cubit.search(); 
-                },
-                isSearch: true,
+                cubit.search();
+              },
+              isSearch: true,
             ),
             Gap(30),
-        
+
             Expanded(
               child: BlocBuilder<SearchCubit, SearchState>(
                 builder: (context, state) {
@@ -39,20 +39,26 @@ class SearchScreen extends StatelessWidget {
                   if (state is SearchLoadingState) {
                     return SingleChildScrollView(
                       child: ShimmerGridView(
-                         itemCount: 6,
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemHeight: MediaQuery.of(context).size.height * 0.2,
-                  crossAxisCount: 2,
-                  childAspectRatio: .62,
+                        itemCount: 6,
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemHeight: MediaQuery.of(context).size.height * 0.2,
+                        crossAxisCount: 2,
+                        childAspectRatio: .62,
                       ),
                     );
-                  } else if (state is SearchSuccessState || (state is SearchInitState && cubit.products.isNotEmpty)) {
+                  } else if (state is SearchSuccessState ||
+                      (state is SearchInitState && cubit.products.isNotEmpty)) {
                     if (books.isEmpty) {
-                        return  Center(
-                          child: Text("No books found! Try to search again..", style: TextStyles.font15.copyWith(color: AppColors.grayColor),),
-                        );
-                      }
+                      return Center(
+                        child: Text(
+                          "No books found! Try to search again..",
+                          style: TextStyles.font15.copyWith(
+                            color: AppColors.grayColor,
+                          ),
+                        ),
+                      );
+                    }
 
                     return SingleChildScrollView(
                       child: GridView.builder(
@@ -60,26 +66,28 @@ class SearchScreen extends StatelessWidget {
                         itemCount: books.length,
                         shrinkWrap: true,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 15,
-                  mainAxisSpacing: 15,
-                  childAspectRatio: 0.55,
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 15,
+                          mainAxisSpacing: 15,
+                          childAspectRatio: 0.55,
                         ),
                         itemBuilder: (context, index) =>
                             BookCard(book: books[index]),
                       ),
                     );
                   } else if (state is SearchErrorState) {
-                    return errorMsgView(); 
+                    return errorMsgView();
                   }
-                  
+
                   return Center(
-                    child: 
-                        Text("Start searching for your favorite books!",
-                        style: TextStyles.font15.copyWith(color: AppColors.grayColor),
-                        textAlign: TextAlign.center,),
+                    child: Text(
+                      "Start searching for your favorite books!",
+                      style: TextStyles.font15.copyWith(
+                        color: AppColors.grayColor,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   );
-              
                 },
               ),
             ),

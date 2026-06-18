@@ -6,10 +6,12 @@ import 'package:bookia/features/auth/presentation/forget_password/pages/password
 import 'package:bookia/features/auth/presentation/forget_password/pages/reset_password_screen.dart';
 import 'package:bookia/features/auth/presentation/login_register/pages/login_screen.dart';
 import 'package:bookia/features/auth/presentation/login_register/pages/register_screen.dart';
+import 'package:bookia/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:bookia/features/details/presentation/pages/details_screen.dart';
 import 'package:bookia/features/home/data/models/all_products_response/product.dart';
 import 'package:bookia/features/home/presentation/pages/home_screen.dart';
 import 'package:bookia/features/main/main_app_screen.dart';
+import 'package:bookia/features/place_order/page/placeorder_screen.dart';
 import 'package:bookia/features/search/data/repository/search_repo.dart';
 import 'package:bookia/features/search/presentation/cubit/search_cubit.dart';
 import 'package:bookia/features/search/presentation/pages/search_screen.dart';
@@ -23,7 +25,6 @@ class AppRoutes {
 
   static final routes = GoRouter(
     routes: [
-
       GoRoute(
         path: Routes.splash,
         builder: (context, state) => const SplashScreen(),
@@ -83,9 +84,8 @@ class AppRoutes {
       ),
 
       GoRoute(path: Routes.home, builder: (context, state) => HomeScreen()),
-      
-      GoRoute(path: Routes.main, builder: (context, state) => MainAppScreen()),
 
+      GoRoute(path: Routes.main, builder: (context, state) => MainAppScreen()),
 
       GoRoute(
         path: Routes.details,
@@ -103,7 +103,12 @@ class AppRoutes {
         },
       ),
 
-     
+      GoRoute(
+        path: Routes.placeOrder,
+        builder: (context, state) {
+          return PlaceOrderScreen(total: CartCubit().formattedTotal);
+        },
+      ),
     ],
   );
 }
