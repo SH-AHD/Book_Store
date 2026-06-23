@@ -1,4 +1,6 @@
 import 'package:bookia/core/services/apis/endpoints.dart';
+import 'package:bookia/core/services/local/shared_pref.dart';
+import 'package:chili_debug_view/chili_debug_view.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
@@ -19,7 +21,18 @@ class DioProvider {
         sendTimeout: const Duration(seconds: 30),
       ),
     );
-    dio.interceptors.add(
+
+    dio.interceptors.addAll([
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          final token = SharedPref.getToken();
+          if (token.isNotEmpty) {
+            options.headers['Authorization'] = 'Bearer $token';
+          }
+          return handler.next(options);
+        },
+      ),
+
       PrettyDioLogger(
         requestHeader: true,
         requestBody: true,
@@ -29,7 +42,8 @@ class DioProvider {
         compact: true,
         maxWidth: 90,
       ),
-    );
+      NetworkLoggerInterceptor(),
+    ]);
   }
 
   static Future<Response> post({

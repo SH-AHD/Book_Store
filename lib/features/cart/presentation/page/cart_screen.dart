@@ -101,12 +101,18 @@ class CartScreen extends StatelessWidget {
             showMsgDialog(context, state.errorMsg);
           } else if (state is CheckoutSuccessState) {
             popPage(context);
-            pushPage(context, Routes.placeOrder);
+            pushPage(
+              context,
+              Routes.placeOrder,
+              extra: context.read<CartCubit>().formattedTotal,
+            );
           }
         },
         builder: (context, state) {
           var cubit = context.read<CartCubit>();
-
+if(cubit.cartItems.isEmpty){
+  return SizedBox.shrink();
+}
           return Padding(
             padding: const EdgeInsets.all(15),
             child: Column(

@@ -6,7 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class CartCubit extends Cubit<CartStates> {
   CartCubit() : super(CartInitState());
   String total = "";
-  String get formattedTotal => (double.tryParse(total) ?? 0.0).toStringAsFixed(2);
+  String get formattedTotal =>
+      (double.tryParse(total) ?? 0.0).toStringAsFixed(2);
   List<CartItem> cartItems = [];
   List<int> cartProductIds = [];
 
@@ -54,54 +55,56 @@ class CartCubit extends Cubit<CartStates> {
     }
   }
 
-Future<void> updateCart(int cartItemId, int quantity) async {
- CartItem targetItem = cartItems.firstWhere((book) => book.itemId == cartItemId);
+  Future<void> updateCart(int cartItemId, int quantity) async {
+    CartItem targetItem = cartItems.firstWhere(
+      (book) => book.itemId == cartItemId,
+    );
 
- int oldQuantity = targetItem.itemQuantity ?? 1;
-  double oldItemTotal = targetItem.itemTotal?.toDouble() ?? 0.0;
-  String oldCartTotal = total;
+    int oldQuantity = targetItem.itemQuantity ?? 1;
+    double oldItemTotal = targetItem.itemTotal?.toDouble() ?? 0.0;
+    String oldCartTotal = total;
 
- double price = targetItem.itemProductPriceAfterDiscount?.toDouble() ?? 0.0;
-  double newItemTotal = price * quantity;
-  
-  double currentCartTotal = double.tryParse(total) ?? 0.0;
-  currentCartTotal = (currentCartTotal - oldItemTotal) + newItemTotal;
+    double price = targetItem.itemProductPriceAfterDiscount?.toDouble() ?? 0.0;
+    double newItemTotal = price * quantity;
 
- targetItem.itemQuantity = quantity;
-  targetItem.itemTotal = newItemTotal;
-  total = currentCartTotal.toString();
+    double currentCartTotal = double.tryParse(total) ?? 0.0;
+    currentCartTotal = (currentCartTotal - oldItemTotal) + newItemTotal;
 
+    targetItem.itemQuantity = quantity;
+    targetItem.itemTotal = newItemTotal;
+    total = currentCartTotal.toString();
 
- emit(CartLocalUpdateState()); 
+    emit(CartLocalUpdateState());
 
-  try {
-    var response = await CartRepo.updateToCart(cartItemId, quantity);
+    try {
+      var response = await CartRepo.updateToCart(cartItemId, quantity);
 
-    if (response != null && response.data != null) {
-      
-      total = response.data!.total.toString();
-      cartItems = response.data!.cartItems ?? [];
-      _updateCartProductIds();
-      emit(CartSuccessState(response.message.toString()));
-    } else {
-      
+      if (response != null && response.data != null) {
+        total = response.data!.total.toString();
+        cartItems = response.data!.cartItems ?? [];
+        _updateCartProductIds();
+        emit(CartSuccessState(response.message.toString()));
+      } else {
+        _rollbackCart(targetItem, oldQuantity, oldItemTotal, oldCartTotal);
+        emit(CartErrorState(response?.message ?? "Failed to update cart"));
+      }
+    } catch (e) {
       _rollbackCart(targetItem, oldQuantity, oldItemTotal, oldCartTotal);
-      emit(CartErrorState(response?.message ?? "Failed to update cart"));
+      emit(CartErrorState(e.toString()));
     }
-  } catch (e) {
-    
-    _rollbackCart(targetItem, oldQuantity, oldItemTotal, oldCartTotal);
-    emit(CartErrorState(e.toString()));
   }
-}
 
-
-void _rollbackCart(CartItem item, int oldQty, double oldItemTotal, String oldCartTotal) {
-  item.itemQuantity = oldQty;
-  item.itemTotal = oldItemTotal;
-  total = oldCartTotal;
-  emit(CartLocalUpdateState()); 
-}
+  void _rollbackCart(
+    CartItem item,
+    int oldQty,
+    double oldItemTotal,
+    String oldCartTotal,
+  ) {
+    item.itemQuantity = oldQty;
+    item.itemTotal = oldItemTotal;
+    total = oldCartTotal;
+    emit(CartLocalUpdateState());
+  }
 
   Future<void> checkout() async {
     emit(CheckoutLoadingState());
@@ -118,6 +121,4 @@ void _rollbackCart(CartItem item, int oldQty, double oldItemTotal, String oldCar
       emit(CartErrorState(e.toString()));
     }
   }
-
-
 }

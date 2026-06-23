@@ -67,7 +67,10 @@ class BookCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("₹${book.priceAfterdiscount ??book.price}", style: TextStyles.font18),
+                Text(
+                  "₹${book.priceAfterdiscount ?? book.price}",
+                  style: TextStyles.font18,
+                ),
                 const Gap(10),
                 onRemove != null
                     ? GestureDetector(
@@ -77,10 +80,14 @@ class BookCard extends StatelessWidget {
                     : Flexible(
                         child: ConstrainedBox(
                           constraints: BoxConstraints(
-                            minWidth: btnMinWidth??80,
-                            maxWidth: btnMaxWidth??120,
+                            minWidth: btnMinWidth ?? 80,
+                            maxWidth: btnMaxWidth ?? 120,
                           ),
-                        child:  AddToCartButton(book,cartItemId: book.id!,text: "Buy",),
+                          child: AddToCartButton(
+                            book,
+                            cartItemId: book.id!,
+                            text: "Buy",
+                          ),
                         ),
                       ),
               ],

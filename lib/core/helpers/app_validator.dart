@@ -49,4 +49,23 @@ class AppValidators {
     }
     return null;
   }
+
+  static String? validateString(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Can\'t be Empty!';
+    }
+    if (value.length < 3) {
+      return 'Must be at least 3 characters';
+    }
+    return null;
+  }
+
+  static String? validatePhoneNumber(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter your phone number';
+    } else if (!RegExp(r'^01[0125][0-9]{8}$').hasMatch(value)) {
+      return 'Enter a valid Egyptian phone number';
+    }
+    return null;
+  }
 }

@@ -38,7 +38,9 @@ void showMsgDialog(
         children: [
           Icon(icon, color: AppColors.whiteColor, size: 20),
           const Gap(10),
-          Text(message),
+          Expanded(
+            child: Text(message, maxLines: 5, overflow: TextOverflow.ellipsis),
+          ),
         ],
       ),
     ),

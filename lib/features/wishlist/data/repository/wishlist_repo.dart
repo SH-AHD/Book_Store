@@ -6,7 +6,6 @@ import 'package:bookia/features/wishlist/data/models/wishlist_response/wishlist_
 import 'package:dio/dio.dart';
 
 class WishlistRepo {
-
   static Future<WishlistResponse?> getWishList() async {
     String token = SharedPref.getToken();
     try {

@@ -30,8 +30,9 @@ class CartItem {
     itemProductImage: json['item_product_image'] as String?,
     itemProductPrice: json['item_product_price'] as String?,
     itemProductDiscount: json['item_product_discount'] as int?,
-    itemProductPriceAfterDiscount:
-        num.tryParse(json['item_product_price_after_discount'].toString())?.toDouble(),
+    itemProductPriceAfterDiscount: num.tryParse(
+      json['item_product_price_after_discount'].toString(),
+    )?.toDouble(),
     itemProductStock: json['item_product_stock'] as int?,
     itemQuantity: json['item_quantity'] as int?,
     itemTotal: num.tryParse(json['item_total'].toString())?.toDouble(),
