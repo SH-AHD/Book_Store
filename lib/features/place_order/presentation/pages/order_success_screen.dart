@@ -6,7 +6,6 @@ import 'package:bookia/core/styles/text_styles.dart';
 import 'package:bookia/core/widgets/body_view.dart';
 import 'package:bookia/core/widgets/main_button.dart';
 import 'package:bookia/core/widgets/svg_pic.dart';
-import 'package:bookia/features/main/main_app_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 

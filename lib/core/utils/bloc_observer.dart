@@ -11,19 +11,19 @@ class MyBlocObserver extends BlocObserver {
 
   @override
   void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
-      log('Error: ${error.toString()}');
+    log('Error: ${error.toString()}');
     super.onError(bloc, error, stackTrace);
   }
 
   @override
   void onChange(BlocBase bloc, Change change) {
     super.onChange(bloc, change);
-      log(change.toString());
+    log(change.toString());
   }
 
   @override
   void onTransition(Bloc bloc, Transition transition) {
     super.onTransition(bloc, transition);
-      log(transition.toString());
+    log(transition.toString());
   }
 }

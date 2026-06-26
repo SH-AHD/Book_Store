@@ -20,5 +20,13 @@ class Routes {
   static const String placeOrder = "/placeOrder";
   static const String orderSuccess = "/orderSuccess";
 
-  static const String account = "/account";
+  static const String profile = "/profile";
+  static const String myOrders = "/myOrders";
+  static const String orderDetails = "/orderDetails";
+
+  static const String editProfile = "/editProfile";
+  static const String fAq = "/fAq";
+  static const String updatePassword = "/updatePassword";
+  static const String contactUs = "/contactUs";
+  static const String privacyAndTerms = "/privacyAndTerms";
 }

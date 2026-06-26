@@ -17,7 +17,7 @@ class MainApp extends StatelessWidget {
         return DebugView(
           navigatorKey: navigatorKey,
           showDebugViewButton: true,
-        
+
           app: SafeArea(
             top: false,
             bottom: Platform.isAndroid,

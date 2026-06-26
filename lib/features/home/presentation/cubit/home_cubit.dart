@@ -26,10 +26,11 @@ class HomeCubit extends Cubit<HomeState> {
       if (slidersRes != null || bestSellersRes != null) {
         sliders = slidersRes?.data?.sliders ?? [];
         bestSellerProducts = bestSellersRes?.data?.products ?? [];
-
+        if (isClosed) return;
         emit(HomeSuccessState());
       }
     } catch (error) {
+      if (isClosed) return;
       emit(HomeErrorState(error.toString()));
     }
   }

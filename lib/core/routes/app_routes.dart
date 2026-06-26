@@ -6,13 +6,22 @@ import 'package:bookia/features/auth/presentation/forget_password/pages/password
 import 'package:bookia/features/auth/presentation/forget_password/pages/reset_password_screen.dart';
 import 'package:bookia/features/auth/presentation/login_register/pages/login_screen.dart';
 import 'package:bookia/features/auth/presentation/login_register/pages/register_screen.dart';
+import 'package:bookia/features/contact_us/contact_us.dart';
 import 'package:bookia/features/details/presentation/pages/details_screen.dart';
+import 'package:bookia/features/faq/faq_screen.dart';
 import 'package:bookia/features/home/data/models/all_products_response/product.dart';
 import 'package:bookia/features/home/presentation/pages/home_screen.dart';
 import 'package:bookia/features/main/main_app_screen.dart';
+import 'package:bookia/features/orders_history/presentation/cubit/orders_cubit.dart';
+import 'package:bookia/features/orders_history/presentation/pages/my_orders_screen.dart';
+import 'package:bookia/features/orders_history/presentation/pages/order_details_screen.dart';
 import 'package:bookia/features/place_order/presentation/cubit/place_order_cubit.dart';
 import 'package:bookia/features/place_order/presentation/pages/order_success_screen.dart';
 import 'package:bookia/features/place_order/presentation/pages/placeorder_screen.dart';
+import 'package:bookia/features/privacy_and_terms/privacy_and_terms_screen.dart';
+import 'package:bookia/features/profile/presentation/cubit/profile_cubit.dart';
+import 'package:bookia/features/profile/presentation/screen/edit_profile_screen.dart';
+import 'package:bookia/features/profile/presentation/screen/update_password_screen.dart';
 import 'package:bookia/features/search/data/repository/search_repo.dart';
 import 'package:bookia/features/search/presentation/cubit/search_cubit.dart';
 import 'package:bookia/features/search/presentation/pages/search_screen.dart';
@@ -124,6 +133,54 @@ class AppRoutes {
       GoRoute(
         path: Routes.orderSuccess,
         builder: (context, state) => const OrderSuccessScreen(),
+      ),
+
+      GoRoute(
+        path: Routes.myOrders,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) => OrdersCubit()..showOrdersHistory(),
+            child: MyOrdersScreen(),
+          );
+        },
+      ),
+      GoRoute(
+        path: Routes.orderDetails,
+        builder: (context, state) {
+          final orderId = state.extra as int;
+
+          return BlocProvider(
+            create: (context) => OrdersCubit()..showSingleOrderHistory(orderId),
+            child: const OrderDetailsScreen(),
+          );
+        },
+      ),
+      GoRoute(
+        path: Routes.editProfile,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) => ProfileCubit(),
+            child: EditProfileScreen(),
+          );
+        },
+      ),
+      GoRoute(
+        path: Routes.updatePassword,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) => ProfileCubit(),
+            child: UpdatePasswordScreen(),
+          );
+        },
+      ),
+      GoRoute(path: Routes.fAq, builder: (context, state) => const FAQScreen()),
+      GoRoute(
+        path: Routes.contactUs,
+        builder: (context, state) => const ContactUsScreen(),
+      ),
+      GoRoute(
+        path: Routes.privacyAndTerms,
+        builder: (context, state) => const PrivacyAndTermsScreen(),
       ),
     ],
   );

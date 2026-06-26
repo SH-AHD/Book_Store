@@ -15,7 +15,10 @@ class SharedPref {
   }
 
   static Future<void> saveToken(String? token) async {
-    if (token == null) return;
+    if (token == null) {
+      await prefs.remove(kToken);
+      return;
+    }
     await prefs.setString(kToken, token);
   }
 

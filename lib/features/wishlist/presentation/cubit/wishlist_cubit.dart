@@ -20,9 +20,11 @@ class WishlistCubit extends Cubit<WishlistStates> {
             .map((e) => (e.id ?? 0).toString())
             .toList();
         await SharedPref.saveWishlistIds(wishlistIds);
+            if (isClosed) return;
         emit(WishlistSuccessStates(response.message ?? ""));
       }
     } on Exception catch (e) {
+          if (isClosed) return;
       emit(WishlistErrorStates(e.toString()));
     }
   }
