@@ -85,13 +85,5 @@ A modern, minimalist **Book Store Application** built with Flutter. This project
 
 ---
 
-### 👥 Team Members
-
-Meet the team behind **Bookia**:
-
-| Member | What they built |
-| :--- | :--- |
-| [**Shahd Sameh**](https://github.com/SH-AHD) | Project architecture, Home Screen, Product Details, Wishlist, Cart, and Place Order flow. |
-| [**Moamen Ragab**](https://github.com/moamenragab189) | Auth flow (Login, Register, OTP, Forget & Reset Password), and Profile management. |
-| [**Mahmoud Abbdelkader**](https://github.com/Mahmoud-Abbdelkader) | Search functionality, My Orders, Order Details, and FAQ. |
-| [**Mina Maged**](https://github.com/Mantoosw) | Contact Us, Privacy & Terms, and Delete Account flow. |
+### Developed By  [**Shahd Sameh**](https://github.com/SH-AHD)
+###### Jun 2026
