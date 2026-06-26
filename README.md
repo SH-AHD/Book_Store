@@ -18,8 +18,8 @@ A modern, minimalist **Book Store Application** built with Flutter. This project
 
 #### Home Screen
 <p align="center">
+      <img src="https://raw.githubusercontent.com/SH-AHD/Book_Store/main/screenShots/profile.jpg" width="250">
   <img src="https://raw.githubusercontent.com/SH-AHD/Book_Store/main/screenShots/home.jpg" width="250" title="Home Screen">
-  <img src="https://raw.githubusercontent.com/SH-AHD/Book_Store/main/screenShots/search.jpg" width="250" title="Search Screen">
 </p>
 
 <details>
@@ -29,18 +29,18 @@ A modern, minimalist **Book Store Application** built with Flutter. This project
     <table>
       <tr>
         <td><img src="https://raw.githubusercontent.com/SH-AHD/Book_Store/main/screenShots/productDetails.jpg" width="200"></td>
-        <td><img src="https://raw.githubusercontent.com/SH-AHD/Book_Store/main/screenShots/bottomSheet.jpg" width="200"></td>
         <td><img src="https://raw.githubusercontent.com/SH-AHD/Book_Store/main/screenShots/wishlist.jpg" width="200"></td>
+        <td><img src="https://raw.githubusercontent.com/SH-AHD/Book_Store/main/screenShots/cart.jpg" width="200"></td>
       </tr>
       <tr>
-        <td><img src="https://raw.githubusercontent.com/SH-AHD/Book_Store/main/screenShots/cart.jpg" width="200"></td>
         <td><img src="https://raw.githubusercontent.com/SH-AHD/Book_Store/main/screenShots/placeOrder.jpg" width="200"></td>
+        <td><img src="https://raw.githubusercontent.com/SH-AHD/Book_Store/main/screenShots/bottomSheet.jpg" width="200"></td>
         <td><img src="https://raw.githubusercontent.com/SH-AHD/Book_Store/main/screenShots/placeOrderSuccess.jpg" width="200"></td>
       </tr>
       <tr>
         <td><img src="https://raw.githubusercontent.com/SH-AHD/Book_Store/main/screenShots/myOrders.jpg" width="200"></td>
         <td><img src="https://raw.githubusercontent.com/SH-AHD/Book_Store/main/screenShots/orderDetails.jpg" width="200"></td>
-        <td><img src="https://raw.githubusercontent.com/SH-AHD/Book_Store/main/screenShots/profile.jpg" width="200"></td>
+ <td> <img src="https://raw.githubusercontent.com/SH-AHD/Book_Store/main/screenShots/search.jpg" width="250" title="Search Screen"></td>
       </tr>
       <tr>
         <td><img src="https://raw.githubusercontent.com/SH-AHD/Book_Store/main/screenShots/EditProfile.jpg" width="200"></td>
