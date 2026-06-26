@@ -100,12 +100,11 @@ class _FAQScreenState extends State<FAQScreen> {
 class _FAQItem {
   final String question;
   final String answer;
-  bool isExpanded;
+  bool isExpanded=false;
 
   _FAQItem({
     required this.question,
     required this.answer,
-    this.isExpanded = false,
   });
 }
 
