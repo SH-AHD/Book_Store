@@ -22,7 +22,7 @@ class MainApp extends StatelessWidget {
             top: false,
             bottom: Platform.isAndroid,
             child: child ?? Container(),
-          ),
+          // ),
         );
       },
     );

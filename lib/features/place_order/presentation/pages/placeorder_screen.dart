@@ -64,7 +64,8 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
               child: SvgPic(path: AppAssets.backSvg),
             ),
           ),
-          body: _formBuilder(context),
+          body: SingleChildScrollView
+          (child: _formBuilder(context)),
           bottomNavigationBar: Padding(
             padding: const EdgeInsets.all(15),
             child: Column(
