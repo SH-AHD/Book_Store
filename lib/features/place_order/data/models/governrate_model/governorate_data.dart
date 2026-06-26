@@ -5,11 +5,12 @@ class GovernorateData {
 
   GovernorateData({this.id, this.governorateNameAr, this.governorateNameEn});
 
-  factory GovernorateData.fromJson(Map<String, dynamic> json) => GovernorateData(
-    id: json['id'] as int?,
-    governorateNameAr: json['governorate_name_ar'] as String?,
-    governorateNameEn: json['governorate_name_en'] as String?,
-  );
+  factory GovernorateData.fromJson(Map<String, dynamic> json) =>
+      GovernorateData(
+        id: json['id'] as int?,
+        governorateNameAr: json['governorate_name_ar'] as String?,
+        governorateNameEn: json['governorate_name_en'] as String?,
+      );
 
   Map<String, dynamic> toJson() => {
     'id': id,

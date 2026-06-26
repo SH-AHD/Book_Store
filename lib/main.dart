@@ -11,7 +11,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   DioProvider.init();
   await SharedPref.init();
-  Bloc.observer=MyBlocObserver();
+  Bloc.observer = MyBlocObserver();
   runApp(
     DevicePreview(
       // enabled: false,

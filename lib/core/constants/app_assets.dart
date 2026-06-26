@@ -13,6 +13,8 @@ class AppAssets {
   static const String cameraSvg = "assets/icons/solar_camera-broken.svg";
   static const String searchSvg = "assets/icons/search-normal.svg";
   static const String backSvg = "assets/icons/back.svg";
+  static const String logOutSvg = "assets/icons/logOut.svg";
+
   // imgs
   static const String successMark = "assets/imgs/Successmark.svg";
   static const String bg = "assets/imgs/bg.png";

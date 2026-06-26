@@ -1,5 +1,5 @@
 class User {
-  int id;
+  int? id;
   String? name;
   String? email;
   dynamic address;
@@ -9,7 +9,7 @@ class User {
   String? image;
 
   User({
-    required this.id,
+    this.id,
     this.name,
     this.email,
     this.address,
@@ -20,7 +20,7 @@ class User {
   });
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-    id: json['id'] as int,
+    id: json['id'] as int?,
     name: json['name'] as String?,
     email: json['email'] as String?,
     address: json['address'] as dynamic,

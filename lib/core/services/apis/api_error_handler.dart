@@ -3,10 +3,12 @@ import 'package:dio/dio.dart';
 void dioErrorHandler(DioException error) {
   if (error.type == DioExceptionType.badResponse) {
     final statusCode = error.response?.statusCode;
-    
+
     // Server errors (500, 502, 503, 504, etc.)
     if (statusCode != null && statusCode >= 500) {
-      throw Exception("Our servers are temporarily busy. Please try again in a few moments.");
+      throw Exception(
+        "Our servers are temporarily busy. Please try again in a few moments.",
+      );
     }
 
     // Validation or client errors (e.g. 422 Unprocessable Entity)
@@ -18,7 +20,9 @@ void dioErrorHandler(DioException error) {
           throw Exception(errorsMap.values.first[0]);
         }
       }
-      throw Exception(data?['message'] ?? "Invalid input. Please check your data.");
+      throw Exception(
+        data?['message'] ?? "Invalid input. Please check your data.",
+      );
     }
   }
 
@@ -32,6 +36,7 @@ void dioErrorHandler(DioException error) {
 
   // Default fallback for any other errors
   throw Exception(
-    error.response?.data?['message'] ?? "Something went wrong. Please try again.",
+    error.response?.data?['message'] ??
+        "Something went wrong. Please try again.",
   );
 }

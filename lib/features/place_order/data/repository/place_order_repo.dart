@@ -8,9 +8,7 @@ import 'package:dio/dio.dart';
 class PlaceOrderRepo {
   static Future<GovernrateModel?> getGovernrates() async {
     try {
-      var response = await DioProvider.get(
-        endpoint: EndPoints.governorates,
-      );
+      var response = await DioProvider.get(endpoint: EndPoints.governorates);
       if (response.statusCode == 200) {
         return GovernrateModel.fromJson(response.data);
       } else {

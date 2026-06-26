@@ -25,12 +25,14 @@ class CartCubit extends Cubit<CartStates> {
         total = response.data!.total.toString();
         cartItems = response.data!.cartItems ?? [];
         _updateCartProductIds();
-
+        if (isClosed) return;
         emit(CartSuccessState(response.message.toString()));
       } else {
+        if (isClosed) return;
         emit(CartErrorState(response?.message ?? "Failed to load cart"));
       }
     } catch (e) {
+      if (isClosed) return;
       emit(CartErrorState(e.toString()));
     }
   }
@@ -45,12 +47,14 @@ class CartCubit extends Cubit<CartStates> {
         total = response.data!.total.toString();
         cartItems = response.data!.cartItems ?? [];
         _updateCartProductIds();
-
+        if (isClosed) return;
         emit(CartSuccessState(response.message.toString()));
       } else {
+        if (isClosed) return;
         emit(CartErrorState(response?.message ?? "Failed to remove item"));
       }
     } catch (e) {
+      if (isClosed) return;
       emit(CartErrorState(e.toString()));
     }
   }
@@ -83,6 +87,7 @@ class CartCubit extends Cubit<CartStates> {
         total = response.data!.total.toString();
         cartItems = response.data!.cartItems ?? [];
         _updateCartProductIds();
+
         emit(CartSuccessState(response.message.toString()));
       } else {
         _rollbackCart(targetItem, oldQuantity, oldItemTotal, oldCartTotal);
