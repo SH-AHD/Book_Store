@@ -58,6 +58,8 @@ class AuthCubit extends Cubit<AuthState> {
       );
       var data = await AuthRepo.register(params);
       if (data != null) {
+        SharedPref.saveToken(data.data?.token);
+        SharedPref.saveUsrInfo(data.data?.user);
         emit(AuthSuccessState());
       }
     } catch (error) {

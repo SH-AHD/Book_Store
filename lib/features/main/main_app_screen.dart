@@ -11,14 +11,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainAppScreen extends StatefulWidget {
-  const MainAppScreen({super.key});
+  const MainAppScreen({super.key, this.currentIndex = 0});
+  final int? currentIndex;
 
   @override
   State<MainAppScreen> createState() => _MainAppScreenState();
 }
 
 class _MainAppScreenState extends State<MainAppScreen> {
-  int index = 0;
+  late int index;
+
+  @override
+  void initState() {
+    super.initState();
+    index = widget.currentIndex ?? 0;
+  }
+
+  @override
+  void didUpdateWidget(covariant MainAppScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.currentIndex != oldWidget.currentIndex) {
+      index = widget.currentIndex ?? 0;
+    }
+  }
+
   List<Widget> screens = [
     BlocProvider(
       create: (context) => HomeCubit()..getInitData(),

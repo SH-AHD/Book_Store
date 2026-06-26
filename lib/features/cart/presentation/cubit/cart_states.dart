@@ -1,29 +1,27 @@
-
 sealed class CartStates {}
 
-class CartInitState extends CartStates{}
+class CartInitState extends CartStates {}
 
-class CartLoadingState extends CartStates{}
+class CartLoadingState extends CartStates {}
 
-class CartSuccessState extends CartStates{
+class CartSuccessState extends CartStates {
   final String msg;
-CartSuccessState(this.msg);
-}
-class CartLocalUpdateState extends CartStates{
-//   final String msg;
-// CartLocalUpdateState(this.msg);
-}
-class CartErrorState extends CartStates{
-final String errorMsg;
-CartErrorState(this.errorMsg);
-
+  CartSuccessState(this.msg);
 }
 
-class CheckoutLoadingState extends CartStates{}
+class CartLocalUpdateState extends CartStates {
+  //   final String msg;
+  // CartLocalUpdateState(this.msg);
+}
 
-class CheckoutSuccessState extends CartStates{
+class CartErrorState extends CartStates {
+  final String errorMsg;
+  CartErrorState(this.errorMsg);
+}
+
+class CheckoutLoadingState extends CartStates {}
+
+class CheckoutSuccessState extends CartStates {
   final String msg;
-CheckoutSuccessState(this.msg);
+  CheckoutSuccessState(this.msg);
 }
-
-

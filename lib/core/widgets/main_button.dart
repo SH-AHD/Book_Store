@@ -36,7 +36,11 @@ class MainButton extends StatelessWidget {
         onPressed: onPressed,
         child: FittedBox(
           fit: BoxFit.scaleDown,
-          child: Text(text, style: TextStyles.font16.copyWith(color: textColor))),
+          child: Text(
+            text,
+            style: TextStyles.font16.copyWith(color: textColor),
+          ),
+        ),
       ),
     );
   }

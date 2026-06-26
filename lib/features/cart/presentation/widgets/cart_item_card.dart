@@ -30,10 +30,7 @@ class CartItemCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 10,
-          vertical: 10,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -47,9 +44,7 @@ class CartItemCard extends StatelessWidget {
               ),
             ),
             Gap(20),
-            Expanded(
-              child: _bookInfoCol(),
-            ),
+            Expanded(child: _bookInfoCol()),
             Gap(10),
             GestureDetector(
               onTap: onRemove,
@@ -73,8 +68,9 @@ class CartItemCard extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
         ),
         Text(
-            "₹${cartItem.itemProductPriceAfterDiscount ?? cartItem.itemProductPrice}",
-            style: TextStyles.font16),
+          "₹${cartItem.itemProductPriceAfterDiscount ?? cartItem.itemProductPrice}",
+          style: TextStyles.font16,
+        ),
         Row(
           spacing: 10,
           children: [
@@ -90,10 +86,7 @@ class CartItemCard extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-            _qCounter(
-              icon: Icons.add,
-              onTap: onIncrement,
-            ),
+            _qCounter(icon: Icons.add, onTap: onIncrement),
           ],
         ),
       ],
@@ -107,13 +100,10 @@ class CartItemCard extends StatelessWidget {
         width: 30,
         height: 30,
         decoration: BoxDecoration(
-          color:  AppColors.lightGrayColor,
+          color: AppColors.lightGrayColor,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: Icon(
-          icon,
-          color: AppColors.darkColor,
-        ),
+        child: Icon(icon, color: AppColors.darkColor),
       ),
     );
   }

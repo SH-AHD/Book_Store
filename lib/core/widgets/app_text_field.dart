@@ -13,15 +13,25 @@ class AppTextField extends StatefulWidget {
     this.isSearch = false,
     this.validator,
     this.onChanged,
+    this.readOnly = false,
+    this.suffwid,
+    this.onTap,
+    this.keyboardType = TextInputType.text,
+    this.maxLength,
   });
   final String hintText;
   final String? suffixPath;
+  final Widget? suffwid;
   final String? prefixPath;
   final bool isPass;
   final bool isSearch;
+  final bool readOnly;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
+  final void Function()? onTap;
+  final TextInputType? keyboardType;
+  final int? maxLength;
   @override
   State<AppTextField> createState() => _AppTextFieldState();
 }
@@ -44,10 +54,13 @@ class _AppTextFieldState extends State<AppTextField> {
           widget.onChanged!(value);
         }
       },
+      keyboardType: widget.keyboardType,
+      onTap: widget.onTap,
       validator: widget.validator,
       obscureText: obscure,
       controller: widget.controller,
-
+      readOnly: widget.readOnly,
+      maxLength: widget.maxLength,
       decoration: InputDecoration(
         hintText: widget.hintText,
         prefixIcon: widget.prefixPath != null
@@ -57,35 +70,40 @@ class _AppTextFieldState extends State<AppTextField> {
               )
             : null,
 
-        suffixIcon: widget.isPass
-            ? IconButton(
-                color: AppColors.grayColor,
-                onPressed: () {
-                  setState(() {
-                    obscure = !obscure;
-                  });
-                },
-                icon: Icon(
-                  obscure ? Icons.visibility_off : Icons.remove_red_eye,
-                ),
-              )
-            : (widget.isSearch &&
-                      widget.controller != null &&
-                      widget.controller!.text.isNotEmpty
-                  ? IconButton(
-                      icon: const Icon(Icons.clear, color: AppColors.grayColor),
-                      onPressed: () {
-                        widget.controller!.clear();
-                        if (widget.onChanged != null) widget.onChanged!("");
-                        setState(() {});
-                      },
-                    )
-                  : (widget.suffixPath != null
-                        ? Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: SvgPic(path: widget.suffixPath!),
-                          )
-                        : null)),
+        suffixIcon:
+            widget.suffwid ??
+            (widget.isPass
+                ? IconButton(
+                    color: AppColors.grayColor,
+                    onPressed: () {
+                      setState(() {
+                        obscure = !obscure;
+                      });
+                    },
+                    icon: Icon(
+                      obscure ? Icons.visibility_off : Icons.remove_red_eye,
+                    ),
+                  )
+                : (widget.isSearch &&
+                          widget.controller != null &&
+                          widget.controller!.text.isNotEmpty
+                      ? IconButton(
+                          icon: const Icon(
+                            Icons.clear,
+                            color: AppColors.grayColor,
+                          ),
+                          onPressed: () {
+                            widget.controller!.clear();
+                            if (widget.onChanged != null) widget.onChanged!("");
+                            setState(() {});
+                          },
+                        )
+                      : (widget.suffixPath != null
+                            ? Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: SvgPic(path: widget.suffixPath!),
+                              )
+                            : null))),
 
         filled: true,
         fillColor: AppColors.whiteColor,

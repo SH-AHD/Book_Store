@@ -34,15 +34,12 @@ class DetailsScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Text(
-              "₹${book.priceAfterdiscount??book.price }",
+              "₹${book.priceAfterdiscount ?? book.price}",
               style: TextStyles.font24,
               textAlign: TextAlign.center,
             ),
 
-            AddToCartButton(
-              book,
-              cartItemId: book.id??0,
-            ),
+            AddToCartButton(book, cartItemId: book.id ?? 0),
           ],
         ),
       ),

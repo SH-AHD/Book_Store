@@ -1,4 +1,3 @@
-
 import 'package:bookia/core/helpers/navigation.dart';
 import 'package:bookia/core/styles/app_colors.dart';
 import 'package:bookia/core/widgets/dialogs.dart';
@@ -10,9 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddToCartButton extends StatelessWidget {
-  const AddToCartButton(Product book, {super.key, required this.cartItemId,this.text });
+  const AddToCartButton(
+    Product book, {
+    super.key,
+    required this.cartItemId,
+    this.text,
+  });
   final int cartItemId;
-  final String ?text;
+  final String? text;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -41,7 +45,7 @@ class AddToCartButton extends StatelessWidget {
               : MainButton(
                   width: MediaQuery.sizeOf(context).width * 0.5,
                   height: MediaQuery.sizeOf(context).height * 0.045,
-                  text: text??"Add To Cart",
+                  text: text ?? "Add To Cart",
                   onPressed: () {
                     cubit.addToCart(cartItemId);
                   },
