@@ -14,15 +14,17 @@ class MainApp extends StatelessWidget {
       theme: AppThemes.lightTheme,
       debugShowCheckedModeBanner: false,
       builder: (context, child) {
-        return DebugView(
-          navigatorKey: navigatorKey,
-          showDebugViewButton: true,
+        return 
+        // DebugView(
+        //   navigatorKey: navigatorKey,
+        //   showDebugViewButton: true,
 
-          app: SafeArea(
+          // app:
+           SafeArea(
             top: false,
             bottom: Platform.isAndroid,
             child: child ?? Container(),
-          ),
+          // ),
         );
       },
     );

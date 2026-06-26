@@ -14,8 +14,8 @@ Future<void> main() async {
   Bloc.observer = MyBlocObserver();
   runApp(
     DevicePreview(
-      // enabled: false,
-      enabled: !kReleaseMode,
+      enabled: false,
+      // enabled: !kReleaseMode,
       builder: (context) => MainApp(),
     ),
   );
