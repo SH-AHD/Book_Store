@@ -40,7 +40,7 @@ A modern, minimalist **Book Store Application** built with Flutter. This project
       <tr>
         <td><img src="https://raw.githubusercontent.com/SH-AHD/Book_Store/main/screenShots/myOrders.jpg" width="200"></td>
         <td><img src="https://raw.githubusercontent.com/SH-AHD/Book_Store/main/screenShots/orderDetails.jpg" width="200"></td>
- <td> <img src="https://raw.githubusercontent.com/SH-AHD/Book_Store/main/screenShots/search.jpg" width="250" title="Search Screen"></td>
+ <td> <img src="https://raw.githubusercontent.com/SH-AHD/Book_Store/main/screenShots/search.jpg" width="200" title="Search Screen"></td>
       </tr>
       <tr>
         <td><img src="https://raw.githubusercontent.com/SH-AHD/Book_Store/main/screenShots/EditProfile.jpg" width="200"></td>
