@@ -1,6 +1,7 @@
 import 'package:bookia/core/constants/app_assets.dart';
 import 'package:bookia/core/helpers/app_validator.dart';
 import 'package:bookia/core/helpers/navigation.dart';
+import 'package:bookia/core/widgets/app_back_btn.dart';
 import 'package:bookia/core/widgets/app_text_field.dart';
 import 'package:bookia/core/widgets/body_view.dart';
 import 'package:bookia/core/widgets/dialogs.dart';
@@ -8,6 +9,8 @@ import 'package:bookia/core/widgets/main_button.dart';
 import 'package:bookia/core/widgets/svg_pic.dart';
 import 'package:bookia/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:bookia/features/profile/presentation/cubit/profile_states.dart';
+import 'package:bookia/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -35,17 +38,12 @@ class UpdatePasswordScreen extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            leading: GestureDetector(
-              onTap: () {
-                popPage(context);
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SvgPic(path: AppAssets.backSvg),
-              ),
+           leading:Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: AppBackBtn(),
             ),
             centerTitle: true,
-            title: const Text('Change Password'),
+            title: Text(LocaleKeys.change_password.tr()),
           ),
           body: BodyView(
             child: Column(
@@ -54,7 +52,7 @@ class UpdatePasswordScreen extends StatelessWidget {
                 _formBuilder(context),
                 Spacer(),
                 MainButton(
-                  text: "Update Password",
+                  text: LocaleKeys.update_password_btn.tr(),
                   onPressed: () {
                     cubit.updatePassword(
                       currentPassword: cubit.currentPasswordController.text,
@@ -86,7 +84,7 @@ class UpdatePasswordScreen extends StatelessWidget {
                 AppTextField(
                   isPass: true,
                   controller: cubit.currentPasswordController,
-                  hintText: "Current Password",
+                  hintText: LocaleKeys.current_password.tr(),
                   validator: AppValidators.validatePassword,
                   keyboardType: TextInputType.visiblePassword,
                 ),
@@ -94,7 +92,7 @@ class UpdatePasswordScreen extends StatelessWidget {
                 AppTextField(
                   isPass: true,
                   controller: cubit.newPasswordController,
-                  hintText: "New Password",
+                  hintText: LocaleKeys.new_password_field.tr(),
                   keyboardType: TextInputType.visiblePassword,
                   validator: AppValidators.validatePassword,
                 ),
@@ -102,7 +100,7 @@ class UpdatePasswordScreen extends StatelessWidget {
                 AppTextField(
                   isPass: true,
                   controller: cubit.confirmNewPasswordController,
-                  hintText: "Confirm New Password",
+                  hintText: LocaleKeys.confirm_new_password.tr(),
                   keyboardType: TextInputType.visiblePassword,
                   validator: (value) =>
                       AppValidators.validatePasswordConfirmation(

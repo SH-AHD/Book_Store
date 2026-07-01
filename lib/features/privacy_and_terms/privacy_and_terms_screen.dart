@@ -1,8 +1,8 @@
-import 'package:bookia/core/constants/app_assets.dart';
-import 'package:bookia/core/helpers/navigation.dart';
 import 'package:bookia/core/styles/app_colors.dart';
 import 'package:bookia/core/styles/text_styles.dart';
-import 'package:bookia/core/widgets/svg_pic.dart';
+import 'package:bookia/core/widgets/app_back_btn.dart';
+import 'package:bookia/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -16,18 +16,15 @@ class PrivacyAndTermsScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text('Legal'),
-          leading: GestureDetector(
-            onTap: () => popPage(context),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: const SvgPic(path: AppAssets.backSvg),
-            ),
+          title: Text(LocaleKeys.legal_title.tr()),
+          leading: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: AppBackBtn(),
           ),
-          bottom: const TabBar(
+          bottom: TabBar(
             tabs: [
-              Tab(text: "Privacy Policy"),
-              Tab(text: "Terms of Use"),
+              Tab(text: LocaleKeys.privacy_policy_tab.tr()),
+              Tab(text: LocaleKeys.terms_of_use_tab.tr()),
             ],
           ),
         ),
@@ -48,100 +45,79 @@ class _PrivacyPolicyTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       padding: const EdgeInsets.all(16),
-      children: const [
-        _LastUpdatedBadge(date: "June 1, 2025"),
-        Gap(16),
+      children: [
+        const _LastUpdatedBadge(date: "June 1, 2025"),
+        const Gap(16),
         _SectionHeader(
           icon: Icons.info_outline_rounded,
-          title: "1. Introduction",
+          title: LocaleKeys.pp_sec1_title.tr(),
         ),
-        _SectionBody(
-          text:
-              "Welcome to Bookia. We are committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, and safeguard your data when you use our application.",
-        ),
-        Gap(14),
+        _SectionBody(text: LocaleKeys.pp_sec1_body.tr()),
+        const Gap(14),
         _SectionHeader(
           icon: Icons.data_usage_rounded,
-          title: "2. Information We Collect",
+          title: LocaleKeys.pp_sec2_title.tr(),
         ),
-        _SectionBody(
-          text:
-              "We collect information you provide directly to us, such as your name, email address, phone number, and shipping address when you register or place an order. We also automatically collect certain technical data such as device type, operating system version, and usage patterns to improve your experience.",
-        ),
-        Gap(14),
+        _SectionBody(text: LocaleKeys.pp_sec2_body.tr()),
+        const Gap(14),
         _SectionHeader(
           icon: Icons.settings_applications_outlined,
-          title: "3. How We Use Your Information",
+          title: LocaleKeys.pp_sec3_title.tr(),
         ),
         _BulletList(
           items: [
-            "To process and fulfill your orders.",
-            "To send order confirmations and shipping updates.",
-            "To respond to your support inquiries.",
-            "To personalize your browsing and recommendations.",
-            "To improve our app's features and performance.",
-            "To send promotional offers (only with your consent).",
+            LocaleKeys.pp_sec3_item1.tr(),
+            LocaleKeys.pp_sec3_item2.tr(),
+            LocaleKeys.pp_sec3_item3.tr(),
+            LocaleKeys.pp_sec3_item4.tr(),
+            LocaleKeys.pp_sec3_item5.tr(),
+            LocaleKeys.pp_sec3_item6.tr(),
           ],
         ),
-        Gap(14),
+        const Gap(14),
         _SectionHeader(
           icon: Icons.share_outlined,
-          title: "4. Sharing Your Information",
+          title: LocaleKeys.pp_sec4_title.tr(),
         ),
-        _SectionBody(
-          text:
-              "We do not sell or rent your personal data. We may share information with trusted third-party service providers (e.g., payment processors, delivery partners) solely to fulfill your orders. All third parties are required to keep your data confidential and use it only for the agreed purpose.",
-        ),
-        Gap(14),
+        _SectionBody(text: LocaleKeys.pp_sec4_body.tr()),
+        const Gap(14),
         _SectionHeader(
           icon: Icons.lock_outline_rounded,
-          title: "5. Data Security",
+          title: LocaleKeys.pp_sec5_title.tr(),
         ),
-        _SectionBody(
-          text:
-              "We implement industry-standard security measures including encryption, secure servers, and access controls to protect your information. However, no method of transmission over the internet is 100% secure, and we cannot guarantee absolute security.",
-        ),
-        Gap(14),
+        _SectionBody(text: LocaleKeys.pp_sec5_body.tr()),
+        const Gap(14),
         _SectionHeader(
           icon: Icons.person_outline_rounded,
-          title: "6. Your Rights",
+          title: LocaleKeys.pp_sec6_title.tr(),
         ),
         _BulletList(
           items: [
-            "Access and review the data we hold about you.",
-            "Request correction of inaccurate information.",
-            "Request deletion of your account and personal data.",
-            "Opt out of marketing communications at any time.",
+            LocaleKeys.pp_sec6_item1.tr(),
+            LocaleKeys.pp_sec6_item2.tr(),
+            LocaleKeys.pp_sec6_item3.tr(),
+            LocaleKeys.pp_sec6_item4.tr(),
           ],
         ),
-        Gap(14),
+        const Gap(14),
         _SectionHeader(
           icon: Icons.child_care_outlined,
-          title: "7. Children's Privacy",
+          title: LocaleKeys.pp_sec7_title.tr(),
         ),
-        _SectionBody(
-          text:
-              "Our services are not directed to children under the age of 13. We do not knowingly collect personal information from children. If you believe we have inadvertently collected such data, please contact us immediately.",
-        ),
-        Gap(14),
+        _SectionBody(text: LocaleKeys.pp_sec7_body.tr()),
+        const Gap(14),
         _SectionHeader(
           icon: Icons.update_rounded,
-          title: "8. Changes to This Policy",
+          title: LocaleKeys.pp_sec8_title.tr(),
         ),
-        _SectionBody(
-          text:
-              "We may update this Privacy Policy from time to time. We will notify you of significant changes via email or an in-app notification. Continued use of the app after changes constitutes your acceptance of the updated policy.",
-        ),
-        Gap(14),
+        _SectionBody(text: LocaleKeys.pp_sec8_body.tr()),
+        const Gap(14),
         _SectionHeader(
           icon: Icons.mail_outline_rounded,
-          title: "9. Contact Us",
+          title: LocaleKeys.pp_sec9_title.tr(),
         ),
-        _SectionBody(
-          text:
-              "If you have any questions about this Privacy Policy, please contact us at privacy@bookia.com or visit the Contact Us section in the app.",
-        ),
-        Gap(24),
+        _SectionBody(text: LocaleKeys.pp_sec9_body.tr()),
+        const Gap(24),
       ],
     );
   }
@@ -156,96 +132,78 @@ class _TermsOfUseTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       padding: const EdgeInsets.all(16),
-      children: const [
+      children: [
         _LastUpdatedBadge(date: "June 1, 2025"),
         Gap(16),
         _SectionHeader(
           icon: Icons.gavel_rounded,
-          title: "1. Acceptance of Terms",
+          title: LocaleKeys.tou_sec1_title.tr(),
         ),
-        _SectionBody(
-          text:
-              "By downloading, installing, or using the Bookia application, you agree to be bound by these Terms of Use. If you do not agree with any part of these terms, please do not use our application.",
-        ),
-        Gap(14),
+        _SectionBody(text: LocaleKeys.tou_sec1_body.tr()),
+        const Gap(14),
         _SectionHeader(
           icon: Icons.account_circle_outlined,
-          title: "2. User Accounts",
+          title: LocaleKeys.tou_sec2_title.tr(),
         ),
-        _SectionBody(
-          text:
-              "You must be at least 16 years old to create an account. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account. Notify us immediately of any unauthorized use.",
-        ),
-        Gap(14),
+        _SectionBody(text: LocaleKeys.tou_sec2_body.tr()),
+        const Gap(14),
         _SectionHeader(
           icon: Icons.shopping_cart_outlined,
-          title: "3. Orders & Payments",
+          title: LocaleKeys.tou_sec3_title.tr(),
         ),
         _BulletList(
           items: [
-            "All prices are displayed in the local currency and are inclusive of applicable taxes.",
-            "Orders are confirmed only after payment is successfully processed.",
-            "We reserve the right to cancel orders in case of stock unavailability or pricing errors.",
-            "Cash on delivery is subject to availability in your area.",
+            LocaleKeys.tou_sec3_item1.tr(),
+            LocaleKeys.tou_sec3_item2.tr(),
+            LocaleKeys.tou_sec3_item3.tr(),
+            LocaleKeys.tou_sec3_item4.tr(),
           ],
         ),
-        Gap(14),
+        const Gap(14),
         _SectionHeader(
           icon: Icons.local_shipping_outlined,
-          title: "4. Shipping & Delivery",
+          title: LocaleKeys.tou_sec4_title.tr(),
         ),
-        _SectionBody(
-          text:
-              "Delivery times are estimates and may vary based on your location and external factors. Bookia is not liable for delays caused by courier services or force majeure events. Risk of loss passes to you upon delivery.",
-        ),
-        Gap(14),
+        _SectionBody(text: LocaleKeys.tou_sec4_body.tr()),
+        const Gap(14),
         _SectionHeader(
           icon: Icons.replay_outlined,
-          title: "5. Returns & Refunds",
+          title: LocaleKeys.tou_sec5_title.tr(),
         ),
-        _SectionBody(
-          text:
-              "Physical books may be returned within 14 days of receipt if they are in their original, unused condition. Refunds are processed within 7–10 business days after we receive the returned item. Digital content and gift cards are non-refundable.",
-        ),
-        Gap(14),
+        _SectionBody(text: LocaleKeys.tou_sec5_body.tr()),
+        const Gap(14),
         _SectionHeader(
           icon: Icons.block_rounded,
-          title: "6. Prohibited Activities",
+          title: LocaleKeys.tou_sec6_title.tr(),
         ),
         _BulletList(
           items: [
-            "Using the app for any fraudulent or unlawful purpose.",
-            "Attempting to gain unauthorized access to our systems.",
-            "Posting or transmitting harmful, offensive, or infringing content.",
-            "Creating multiple accounts to abuse promotions or discounts.",
-            "Reverse engineering or copying any part of the application.",
+            LocaleKeys.tou_sec6_item1.tr(),
+            LocaleKeys.tou_sec6_item2.tr(),
+            LocaleKeys.tou_sec6_item3.tr(),
+            LocaleKeys.tou_sec6_item4.tr(),
+            LocaleKeys.tou_sec6_item5.tr(),
           ],
         ),
-        Gap(14),
+        const Gap(14),
         _SectionHeader(
           icon: Icons.copyright_outlined,
-          title: "7. Intellectual Property",
+          title: LocaleKeys.tou_sec7_title.tr(),
         ),
-        _SectionBody(
-          text:
-              "All content on the Bookia app — including logos, images, text, and software — is the property of Bookia or its licensors and is protected by copyright law. You may not reproduce, distribute, or create derivative works without our explicit written permission.",
-        ),
-        Gap(14),
+        _SectionBody(text: LocaleKeys.tou_sec7_body.tr()),
+        const Gap(14),
         _SectionHeader(
           icon: Icons.warning_amber_outlined,
-          title: "8. Limitation of Liability",
+          title: LocaleKeys.tou_sec8_title.tr(),
         ),
-        _SectionBody(
-          text:
-              "Bookia is provided 'as is' without any warranties. To the fullest extent permitted by law, we are not liable for any indirect, incidental, or consequential damages arising from your use of the app or from any orders placed through it.",
+        _SectionBody(text: LocaleKeys.tou_sec8_body.tr()),
+        const Gap(14),
+        _SectionHeader(
+          icon: Icons.edit_document,
+          title: LocaleKeys.tou_sec9_title.tr(),
         ),
-        Gap(14),
-        _SectionHeader(icon: Icons.edit_document, title: "9. Changes to Terms"),
-        _SectionBody(
-          text:
-              "We reserve the right to update these Terms of Use at any time. We will provide notice of material changes via the app or by email. Your continued use of Bookia following any changes means you accept the new terms.",
-        ),
-        Gap(24),
+        _SectionBody(text: LocaleKeys.tou_sec9_body.tr()),
+        const Gap(24),
       ],
     );
   }
@@ -275,7 +233,7 @@ class _LastUpdatedBadge extends StatelessWidget {
           ),
           const Gap(6),
           Text(
-            "Last updated: $date",
+            LocaleKeys.last_updated.tr(namedArgs: {'date': date}),
             style: TextStyles.font14.copyWith(
               color: AppColors.darkGrayColor,
               fontSize: 12,

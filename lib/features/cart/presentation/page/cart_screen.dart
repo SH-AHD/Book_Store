@@ -14,6 +14,8 @@ import 'package:bookia/features/cart/data/models/cart_response_model/cart_item.d
 import 'package:bookia/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:bookia/features/cart/presentation/cubit/cart_states.dart';
 import 'package:bookia/features/cart/presentation/widgets/cart_item_card.dart';
+import 'package:bookia/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -23,7 +25,11 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("My Cart"), centerTitle: true),
+      appBar: AppBar(
+        title: Text(LocaleKeys.my_cart.tr()),
+        centerTitle: true,
+        leading: SizedBox.shrink(),
+      ),
       body: BlocBuilder<CartCubit, CartStates>(
         builder: (context, state) {
           var cubit = context.read<CartCubit>();
@@ -49,7 +55,7 @@ class CartScreen extends StatelessWidget {
                     w: 150,
                   ),
                   Gap(20),
-                  Text("Your Cart is Empty!", style: TextStyles.font20),
+                  Text(LocaleKeys.cart_empty.tr(), style: TextStyles.font20),
                 ],
               ),
             );
@@ -71,7 +77,7 @@ class CartScreen extends StatelessWidget {
                       citem.itemQuantity! + 1,
                     );
                   } else {
-                    showMsgDialog(context, "You can't add more than the stock");
+                    showMsgDialog(context, LocaleKeys.cant_add_more_stock.tr());
                   }
                 },
                 onDecrement: () {
@@ -122,7 +128,7 @@ class CartScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Total:",
+                      LocaleKeys.total.tr(),
                       style: TextStyles.font20.copyWith(
                         color: AppColors.darkGrayColor,
                       ),
@@ -132,7 +138,7 @@ class CartScreen extends StatelessWidget {
                 ),
                 Gap(12),
                 MainButton(
-                  text: "Check Out!",
+                  text: LocaleKeys.check_out.tr(),
                   color: AppColors.darkColor,
                   onPressed: () => cubit.checkout(),
                 ),

@@ -8,6 +8,8 @@ import 'package:bookia/core/widgets/shimmer/shimmer_grid_view.dart';
 import 'package:bookia/core/widgets/svg_pic.dart';
 import 'package:bookia/features/wishlist/presentation/cubit/wishlist_cubit.dart';
 import 'package:bookia/features/wishlist/presentation/cubit/wishlist_states.dart';
+import 'package:bookia/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -18,7 +20,11 @@ class WishlistScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     WishlistCubit cubit = context.read<WishlistCubit>();
     return Scaffold(
-      appBar: AppBar(centerTitle: true, title: const Text('Wishlist')),
+      appBar: AppBar(
+        leading: SizedBox.shrink(),
+        centerTitle: true,
+        title: Text(LocaleKeys.wishlist.tr()),
+      ),
       body: BodyView(
         child: BlocBuilder<WishlistCubit, WishlistStates>(
           builder: (context, state) {
@@ -44,7 +50,7 @@ class WishlistScreen extends StatelessWidget {
                       ),
                       Gap(30),
                       Text(
-                        "Start adding your favorite books!",
+                        LocaleKeys.start_adding_favorites.tr(),
                         style: TextStyles.font15.copyWith(
                           color: AppColors.darkColor,
                         ),
@@ -89,7 +95,7 @@ class WishlistScreen extends StatelessWidget {
                   ),
                   Gap(30),
                   Text(
-                    "Start adding your favorite books!",
+                    LocaleKeys.start_adding_favorites.tr(),
                     style: TextStyles.font15.copyWith(
                       color: AppColors.darkColor,
                     ),

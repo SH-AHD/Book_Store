@@ -1,9 +1,11 @@
 import 'package:bookia/core/constants/app_assets.dart';
+import 'package:bookia/core/extensions/localization_flags.dart';
 import 'package:bookia/core/helpers/navigation.dart';
 import 'package:bookia/core/routes/routes.dart';
 import 'package:bookia/core/widgets/svg_pic.dart';
 import 'package:bookia/features/home/presentation/widgets/best_seller_builder.dart';
 import 'package:bookia/features/home/presentation/widgets/home_slider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -17,6 +19,12 @@ class HomeScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         title: SvgPic(path: AppAssets.logo, w: 100),
         actions: [
+           IconButton(
+            onPressed: () {
+             context.setLocale(Locale(context.isArabic ? 'en' : 'ar'));
+            },
+            icon: Icon(Icons.language),
+          ),
           IconButton(
             onPressed: () {
               pushPage(context, Routes.search);

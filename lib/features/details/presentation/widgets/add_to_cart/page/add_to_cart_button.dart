@@ -5,6 +5,8 @@ import 'package:bookia/core/widgets/main_button.dart';
 import 'package:bookia/features/details/presentation/widgets/add_to_cart/cubit/add_to_cart_cubit.dart';
 import 'package:bookia/features/details/presentation/widgets/add_to_cart/cubit/add_to_cart_states.dart';
 import 'package:bookia/features/home/data/models/all_products_response/product.dart';
+import 'package:bookia/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -39,13 +41,13 @@ class AddToCartButton extends StatelessWidget {
               ? MainButton(
                   width: MediaQuery.sizeOf(context).width * 0.5,
                   height: MediaQuery.sizeOf(context).height * 0.045,
-                  text: "Added To Cart!",
+                  text: LocaleKeys.added_to_cart.tr(),
                   onPressed: () {},
                 )
               : MainButton(
                   width: MediaQuery.sizeOf(context).width * 0.5,
                   height: MediaQuery.sizeOf(context).height * 0.045,
-                  text: text ?? "Add To Cart",
+                  text: text ?? LocaleKeys.add_to_cart.tr(),
                   onPressed: () {
                     cubit.addToCart(cartItemId);
                   },

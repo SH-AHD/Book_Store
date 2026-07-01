@@ -3,6 +3,7 @@ import 'package:bookia/core/helpers/app_validator.dart';
 import 'package:bookia/core/helpers/navigation.dart';
 import 'package:bookia/core/routes/routes.dart';
 import 'package:bookia/core/styles/text_styles.dart';
+import 'package:bookia/core/widgets/app_back_btn.dart';
 import 'package:bookia/core/widgets/app_text_field.dart';
 import 'package:bookia/core/widgets/body_view.dart';
 import 'package:bookia/core/widgets/main_button.dart';
@@ -11,6 +12,8 @@ import 'package:bookia/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:bookia/features/auth/presentation/cubit/auth_state.dart';
 import 'package:bookia/features/auth/presentation/widgets/auth_footer.dart';
 import 'package:bookia/features/auth/presentation/widgets/auth_listener_widgets.dart';
+import 'package:bookia/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -31,17 +34,12 @@ class RegisterScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: GestureDetector(
-            onTap: () {
-              popPage(context);
-            },
-            child: SvgPic(path: AppAssets.backSvg),
-          ),
+            title: AppBackBtn(),
         ),
         body: _registerBody(context),
         bottomNavigationBar: AuthFooter(
-          ques: "Already have an account? ",
-          actionsen: "Login Now",
+          ques: LocaleKeys.already_have_account.tr(),
+          actionsen: LocaleKeys.login_now.tr(),
           onTap: () {
             pushReplacementPage(context, Routes.login);
           },
@@ -59,24 +57,24 @@ class RegisterScreen extends StatelessWidget {
           autovalidateMode: AutovalidateMode.onUnfocus,
           child: Column(
             children: [
-              Text("Hello! Register to get started", style: TextStyles.font30),
+              Text(LocaleKeys.register_title.tr(), style: TextStyles.font30),
               Gap(32),
               AppTextField(
                 controller: cubit.usernameController,
                 validator: AppValidators.validateUsername,
-                hintText: "Username",
+                hintText: LocaleKeys.username.tr(),
               ),
               Gap(15),
               AppTextField(
                 controller: cubit.emailController,
                 validator: AppValidators.validateEmail,
-                hintText: "Email",
+                hintText: LocaleKeys.email.tr(),
               ),
               Gap(15),
               AppTextField(
                 controller: cubit.passwordController,
                 validator: AppValidators.validatePassword,
-                hintText: "Password",
+                hintText: LocaleKeys.password.tr(),
                 isPass: true,
               ),
               Gap(15),
@@ -87,12 +85,12 @@ class RegisterScreen extends StatelessWidget {
                       value,
                       cubit.passwordController.text,
                     ),
-                hintText: "Confirm password",
+                hintText: LocaleKeys.confirm_password.tr(),
                 isPass: true,
               ),
               Gap(30),
               MainButton(
-                text: "Register",
+                text: LocaleKeys.register.tr(),
                 onPressed: () {
                   if (cubit.formKey.currentState!.validate()) {
                     cubit.register();

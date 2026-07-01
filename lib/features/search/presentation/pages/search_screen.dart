@@ -7,6 +7,8 @@ import 'package:bookia/core/widgets/custom_error_views.dart';
 import 'package:bookia/core/widgets/shimmer/shimmer_grid_view.dart';
 import 'package:bookia/features/search/presentation/cubit/search_cubit.dart';
 import 'package:bookia/features/search/presentation/cubit/search_state.dart';
+import 'package:bookia/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -18,13 +20,13 @@ class SearchScreen extends StatelessWidget {
     var cubit = context.read<SearchCubit>();
 
     return Scaffold(
-      appBar: AppBar(centerTitle: true, title: const Text('Search For books')),
+      appBar: AppBar(centerTitle: true, title: Text(LocaleKeys.search_hint.tr())),
       body: BodyView(
         child: Column(
           children: [
             AppTextField(
               controller: cubit.searchController,
-              hintText: "Search Products",
+              hintText: LocaleKeys.search_hint.tr(),
               onChanged: (value) {
                 cubit.search();
               },
@@ -52,7 +54,7 @@ class SearchScreen extends StatelessWidget {
                     if (books.isEmpty) {
                       return Center(
                         child: Text(
-                          "No books found! Try to search again..",
+                          LocaleKeys.no_books_found.tr(),
                           style: TextStyles.font15.copyWith(
                             color: AppColors.grayColor,
                           ),
@@ -81,7 +83,7 @@ class SearchScreen extends StatelessWidget {
 
                   return Center(
                     child: Text(
-                      "Start searching for your favorite books!",
+                      LocaleKeys.search_start.tr(),
                       style: TextStyles.font15.copyWith(
                         color: AppColors.grayColor,
                       ),
