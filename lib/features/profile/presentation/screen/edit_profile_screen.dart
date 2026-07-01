@@ -5,6 +5,7 @@ import 'package:bookia/core/helpers/navigation.dart';
 import 'package:bookia/core/helpers/pick_image.dart';
 import 'package:bookia/core/services/local/shared_pref.dart';
 import 'package:bookia/core/styles/app_colors.dart';
+import 'package:bookia/core/widgets/app_back_btn.dart';
 import 'package:bookia/core/widgets/app_text_field.dart';
 import 'package:bookia/core/widgets/body_view.dart';
 import 'package:bookia/core/widgets/custom_cached_network_image.dart';
@@ -14,6 +15,8 @@ import 'package:bookia/core/widgets/svg_pic.dart';
 import 'package:bookia/features/auth/data/models/auth_response/user.dart';
 import 'package:bookia/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:bookia/features/profile/presentation/cubit/profile_states.dart';
+import 'package:bookia/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -68,17 +71,12 @@ class EditProfileScreen extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            leading: GestureDetector(
-              onTap: () {
-                popPage(context);
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SvgPic(path: AppAssets.backSvg),
-              ),
+           leading:Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: AppBackBtn(),
             ),
             centerTitle: true,
-            title: const Text('Edit Profile'),
+            title: Text(LocaleKeys.edit_profile.tr()),
           ),
           body: BodyView(
             child: Column(
@@ -119,7 +117,7 @@ class EditProfileScreen extends StatelessWidget {
                 _formBuilder(context),
                 Spacer(),
                 MainButton(
-                  text: "Update Profile",
+                  text: LocaleKeys.update_profile.tr(),
                   onPressed: () {
                     cubit.updateUserData(
                       name: cubit.fullNameController.text,
@@ -151,13 +149,13 @@ class EditProfileScreen extends StatelessWidget {
               children: [
                 AppTextField(
                   controller: cubit.fullNameController,
-                  hintText: "Full Name",
+                  hintText: LocaleKeys.full_name.tr(),
                   validator: AppValidators.validateUsername,
                 ),
                 Gap(12),
                 AppTextField(
                   controller: cubit.phoneController,
-                  hintText: "Phone Number",
+                  hintText: LocaleKeys.phone_number.tr(),
                   keyboardType: TextInputType.number,
                   maxLength: 11,
                   validator: AppValidators.validatePhoneNumber,
@@ -165,14 +163,14 @@ class EditProfileScreen extends StatelessWidget {
                 Gap(12),
                 AppTextField(
                   controller: cubit.cityController,
-                  hintText: "City",
+                  hintText: LocaleKeys.city.tr(),
                   keyboardType: TextInputType.streetAddress,
                   validator: AppValidators.validateString,
                 ),
                 Gap(12),
                 AppTextField(
                   controller: cubit.addressController,
-                  hintText: "Address",
+                  hintText: LocaleKeys.address.tr(),
                   keyboardType: TextInputType.streetAddress,
                   validator: AppValidators.validateString,
                 ),

@@ -1,7 +1,9 @@
-import 'package:bookia/core/constants/app_assets.dart';
 import 'package:bookia/core/styles/app_colors.dart';
 import 'package:bookia/core/styles/text_styles.dart';
 import 'package:bookia/core/widgets/svg_pic.dart';
+import 'package:bookia/core/constants/app_assets.dart';
+import 'package:bookia/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -19,7 +21,7 @@ class SocialLogin extends StatelessWidget {
             ),
             Gap(47),
             Text(
-              "Or",
+              LocaleKeys.or.tr(),
               style: TextStyles.font14.copyWith(color: AppColors.darkGrayColor),
             ),
             Gap(47),
@@ -30,13 +32,13 @@ class SocialLogin extends StatelessWidget {
         ),
         Gap(21),
         SocialButton(
-          text: "Sign in with Google",
+          text: LocaleKeys.sign_in_google.tr(),
           path: AppAssets.googleSvg,
           onTap: () {},
         ),
         Gap(15),
         SocialButton(
-          text: "Sign in with Apple",
+          text: LocaleKeys.sign_in_apple.tr(),
           path: AppAssets.appleSvg,
           onTap: () {},
         ),

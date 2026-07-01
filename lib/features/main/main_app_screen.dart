@@ -8,6 +8,8 @@ import 'package:bookia/features/home/presentation/pages/home_screen.dart';
 import 'package:bookia/features/profile/presentation/screen/profile_screen.dart';
 import 'package:bookia/features/wishlist/presentation/cubit/wishlist_cubit.dart';
 import 'package:bookia/features/wishlist/presentation/pages/wishlist_screen.dart';
+import 'package:bookia/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -70,7 +72,7 @@ class _MainAppScreenState extends State<MainAppScreen> {
               path: AppAssets.homeSvg,
               color: AppColors.primaryColor,
             ),
-            label: "home",
+            label: LocaleKeys.home.tr(),
           ),
           BottomNavigationBarItem(
             icon: SvgPic(path: AppAssets.bookmarkSvg),
@@ -78,7 +80,7 @@ class _MainAppScreenState extends State<MainAppScreen> {
               path: AppAssets.bookmarkSvg,
               color: AppColors.primaryColor,
             ),
-            label: "wishlist",
+            label: LocaleKeys.wishlist.tr(),
           ),
           BottomNavigationBarItem(
             icon: SvgPic(path: AppAssets.cartSvg),
@@ -86,7 +88,7 @@ class _MainAppScreenState extends State<MainAppScreen> {
               path: AppAssets.cartSvg,
               color: AppColors.primaryColor,
             ),
-            label: "cart",
+            label: LocaleKeys.cart.tr(),
           ),
           BottomNavigationBarItem(
             icon: SvgPic(path: AppAssets.profileSvg),
@@ -94,7 +96,7 @@ class _MainAppScreenState extends State<MainAppScreen> {
               path: AppAssets.profileSvg,
               color: AppColors.primaryColor,
             ),
-            label: "profile",
+            label: LocaleKeys.profile.tr(),
           ),
         ],
       ),

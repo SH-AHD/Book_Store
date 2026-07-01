@@ -64,8 +64,7 @@ class ProfileCubit extends Cubit<ProfileState> {
         emit(ProfileErrorState("Something went wrong"));
       }
     } catch (e) {
-      String errorMsg = e.toString().replaceFirst('Exception: ', '');
-      emit(ProfileErrorState(errorMsg));
+      emit(ProfileErrorState(e.toString()));
     }
   }
 
@@ -88,8 +87,7 @@ class ProfileCubit extends Cubit<ProfileState> {
         emit(ProfileErrorState("Something went wrong"));
       }
     } catch (e) {
-      String errorMsg = e.toString().replaceFirst('Exception: ', '');
-      emit(ProfileErrorState(errorMsg));
+      emit(ProfileErrorState(e.toString()));
     }
   }
 
@@ -106,8 +104,7 @@ class ProfileCubit extends Cubit<ProfileState> {
         emit(ProfileErrorState("Something went wrong"));
       }
     } catch (e) {
-      String errorMsg = e.toString().replaceFirst('Exception: ', '');
-      emit(ProfileErrorState(errorMsg));
+      emit(ProfileErrorState(e.toString()));
     }
   }
 

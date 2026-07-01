@@ -2,6 +2,8 @@ import 'package:bookia/core/helpers/navigation.dart';
 import 'package:bookia/core/styles/app_colors.dart';
 import 'package:bookia/core/styles/text_styles.dart';
 import 'package:bookia/features/place_order/data/models/governrate_model/governorate_data.dart';
+import 'package:bookia/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -25,7 +27,7 @@ void showGovernrateBottomSheet(
         child: Column(
           children: [
             Text(
-              "Select a Governrate",
+              LocaleKeys.select_governorate.tr(),
               style: TextStyles.font24.copyWith(color: AppColors.darkGrayColor),
             ),
             const Gap(15),

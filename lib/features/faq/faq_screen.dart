@@ -2,6 +2,7 @@ import 'package:bookia/core/constants/app_assets.dart';
 import 'package:bookia/core/helpers/navigation.dart';
 import 'package:bookia/core/styles/app_colors.dart';
 import 'package:bookia/core/styles/text_styles.dart';
+import 'package:bookia/core/widgets/app_back_btn.dart';
 import 'package:bookia/core/widgets/svg_pic.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -62,15 +63,10 @@ class _FAQScreenState extends State<FAQScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        leading: GestureDetector(
-          onTap: () {
-            popPage(context);
-          },
-          child: Padding(
+       leading:Padding(
             padding: const EdgeInsets.all(8.0),
-            child: SvgPic(path: AppAssets.backSvg),
-          ),
-        ),
+            child: AppBackBtn(),
+            ),
         centerTitle: true,
         title: const Text('FAQs'),
       ),

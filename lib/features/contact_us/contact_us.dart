@@ -1,10 +1,10 @@
-import 'package:bookia/core/constants/app_assets.dart';
-import 'package:bookia/core/helpers/navigation.dart';
 import 'package:bookia/core/styles/app_colors.dart';
 import 'package:bookia/core/styles/text_styles.dart';
+import 'package:bookia/core/widgets/app_back_btn.dart';
 import 'package:bookia/core/widgets/app_text_field.dart';
 import 'package:bookia/core/widgets/main_button.dart';
-import 'package:bookia/core/widgets/svg_pic.dart';
+import 'package:bookia/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -45,17 +45,12 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        leading: GestureDetector(
-          onTap: () {
-            popPage(context);
-          },
-          child: Padding(
+        leading:Padding(
             padding: const EdgeInsets.all(8.0),
-            child: SvgPic(path: AppAssets.backSvg),
-          ),
-        ),
+            child: AppBackBtn(),
+            ),
         centerTitle: true,
-        title: const Text('Contact Us'),
+        title: Text(LocaleKeys.contact_us_title.tr()),
       ),
       body: _submitted ? _buildSuccessView() : _buildFormView(),
     );
@@ -83,7 +78,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
             ),
             const Gap(24),
             Text(
-              "Message Sent!",
+              LocaleKeys.message_sent.tr(),
               style: TextStyles.font16.copyWith(
                 fontWeight: FontWeight.bold,
                 color: AppColors.darkColor,
@@ -92,7 +87,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
             ),
             const Gap(10),
             Text(
-              "Thank you for reaching out. Our team will get back to you within 1–2 business days.",
+              LocaleKeys.message_sent_subtitle.tr(),
               style: TextStyles.font14.copyWith(
                 color: AppColors.grayColor,
                 height: 1.6,
@@ -101,7 +96,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
             ),
             const Gap(32),
             MainButton(
-              text: "Send Another Message",
+              text: LocaleKeys.send_another_message.tr(),
               onPressed: () {
                 _nameController.clear();
                 _emailController.clear();
@@ -151,7 +146,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "We'd love to hear from you",
+                          LocaleKeys.hear_from_you.tr(),
                           style: TextStyles.font14.copyWith(
                             fontWeight: FontWeight.bold,
                             color: AppColors.darkColor,
@@ -159,7 +154,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                         ),
                         const Gap(2),
                         Text(
-                          "Fill in the form below and we'll respond as soon as possible.",
+                          LocaleKeys.fill_form_below.tr(),
                           style: TextStyles.font14.copyWith(
                             color: AppColors.darkGrayColor,
                             fontSize: 12,
@@ -189,58 +184,58 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
             ),
             const Gap(24),
 
-            _buildLabel("Full Name"),
+            _buildLabel(LocaleKeys.full_name_label.tr()),
             const Gap(8),
             AppTextField(
               controller: _nameController,
-              hintText: "e.g. Ahmed Mohamed",
+              hintText: LocaleKeys.name_hint.tr(),
               validator: (v) =>
-                  (v == null || v.trim().isEmpty) ? "Name is required" : null,
+                  (v == null || v.trim().isEmpty) ? LocaleKeys.validate_name_required.tr() : null,
             ),
             const Gap(14),
 
-            _buildLabel("Email Address"),
+            _buildLabel(LocaleKeys.email_address_label.tr()),
             const Gap(8),
             AppTextField(
               controller: _emailController,
-              hintText: "e.g. ahmed@example.com",
+              hintText: LocaleKeys.email_hint.tr(),
               keyboardType: TextInputType.emailAddress,
               validator: (v) {
-                if (v == null || v.trim().isEmpty) return "Email is required";
+                if (v == null || v.trim().isEmpty) return LocaleKeys.validate_email_empty.tr();
                 if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(v)) {
-                  return "Enter a valid email address";
+                  return LocaleKeys.validate_email_invalid.tr();
                 }
                 return null;
               },
             ),
             const Gap(14),
 
-            _buildLabel("Subject"),
+            _buildLabel(LocaleKeys.subject_label.tr()),
             const Gap(8),
             AppTextField(
               controller: _subjectController,
-              hintText: "e.g. Order issue, refund request...",
+              hintText: LocaleKeys.subject_hint.tr(),
               validator: (v) => (v == null || v.trim().isEmpty)
-                  ? "Subject is required"
+                  ? LocaleKeys.validate_subject_required.tr()
                   : null,
             ),
             const Gap(14),
 
-            _buildLabel("Message"),
+            _buildLabel(LocaleKeys.message_label.tr()),
             const Gap(8),
             TextFormField(
               controller: _messageController,
               minLines: 5,
               maxLines: 8,
               validator: (v) {
-                if (v == null || v.trim().isEmpty) return "Message is required";
+                if (v == null || v.trim().isEmpty) return LocaleKeys.validate_message_required.tr();
                 if (v.trim().length < 20) {
-                  return "Message must be at least 20 characters";
+                  return LocaleKeys.validate_message_short.tr();
                 }
                 return null;
               },
               decoration: InputDecoration(
-                hintText: "Describe your issue or question in detail...",
+                hintText: LocaleKeys.message_hint.tr(),
                 filled: true,
                 fillColor: AppColors.whiteColor,
                 alignLabelWithHint: true,
@@ -248,7 +243,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
             ),
             const Gap(28),
 
-            MainButton(text: "Send Message", onPressed: _submit),
+            MainButton(text: LocaleKeys.send_message_btn.tr(), onPressed: _submit),
             const Gap(16),
           ],
         ),

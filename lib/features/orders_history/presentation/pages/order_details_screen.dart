@@ -2,12 +2,15 @@ import 'package:bookia/core/constants/app_assets.dart';
 import 'package:bookia/core/helpers/navigation.dart';
 import 'package:bookia/core/styles/app_colors.dart';
 import 'package:bookia/core/styles/text_styles.dart';
+import 'package:bookia/core/widgets/app_back_btn.dart';
 import 'package:bookia/core/widgets/svg_pic.dart';
 import 'package:bookia/features/orders_history/data/models/single_order_details_model/data.dart';
 import 'package:bookia/features/orders_history/data/models/single_order_details_model/order_product.dart';
 import 'package:bookia/features/orders_history/presentation/cubit/orders_cubit.dart';
 import 'package:bookia/features/orders_history/presentation/cubit/orders_state.dart';
 import 'package:bookia/features/orders_history/presentation/widgets/order_status_chip.dart';
+import 'package:bookia/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -23,14 +26,11 @@ class OrderDetailsScreen extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(
               centerTitle: true,
-              title: const Text('Order Details'),
-              leading: GestureDetector(
-                onTap: () => popPage(context),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SvgPic(path: AppAssets.backSvg),
-                ),
-              ),
+              title: Text(LocaleKeys.Order_details.tr()),
+              leading:Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: AppBackBtn(),
+            ),
             ),
             body: const Center(child: CircularProgressIndicator()),
           );
@@ -40,14 +40,11 @@ class OrderDetailsScreen extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(
               centerTitle: true,
-              title: const Text('Order Details'),
-              leading: GestureDetector(
-                onTap: () => popPage(context),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SvgPic(path: AppAssets.backSvg),
-                ),
-              ),
+              title: Text(LocaleKeys.Order_details.tr()),
+              leading:Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: AppBackBtn(),
+            ),
             ),
             body: Center(
               child: Text(state.errMsg ?? '', style: TextStyles.font14),
@@ -78,14 +75,11 @@ class _OrderDetailsContent extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Order #${order.orderCode ?? ""}'),
-        leading: GestureDetector(
-          onTap: () => popPage(context),
-          child: Padding(
+        title: Text(LocaleKeys.order_number.tr(namedArgs: {'code': order.orderCode ?? ''})),
+        leading:Padding(
             padding: const EdgeInsets.all(8.0),
-            child: SvgPic(path: AppAssets.backSvg),
-          ),
-        ),
+            child: AppBackBtn(),
+            ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -95,17 +89,17 @@ class _OrderDetailsContent extends StatelessWidget {
             _buildOrderHeader(order.status ?? '', order.orderDate ?? ''),
             const Gap(20),
 
-            _buildSectionTitle("Shipping Information"),
+            _buildSectionTitle(LocaleKeys.shipping_information.tr()),
             const Gap(8),
             _buildShippingInfoCard(order),
             const Gap(20),
 
-            _buildSectionTitle("Ordered Products (${products.length})"),
+            _buildSectionTitle(LocaleKeys.ordered_products.tr(namedArgs: {'count': products.length.toString()})),
             const Gap(8),
             _buildProductsList(products),
             const Gap(20),
 
-            _buildSectionTitle("Price Details"),
+            _buildSectionTitle(LocaleKeys.price_details.tr()),
             const Gap(8),
             _buildPriceSummaryCard(order),
             const Gap(24),
@@ -132,7 +126,7 @@ class _OrderDetailsContent extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Order Date", style: TextStyles.font14),
+            Text(LocaleKeys.order_date.tr(), style: TextStyles.font14),
             Text(
               date,
               style: TextStyles.font14.copyWith(color: AppColors.grayColor),
@@ -214,7 +208,7 @@ class _OrderDetailsContent extends StatelessWidget {
               padding: const EdgeInsets.only(top: 6),
               key: ValueKey(product.orderProductId),
               child: Text(
-                "Qty: ${product.orderProductQuantity}  ×  ${product.productPriceAfterDiscount ?? product.productPrice} ₹",
+                "${LocaleKeys.qty.tr()}: ${product.orderProductQuantity}  ×  ${product.productPriceAfterDiscount ?? product.productPrice} ₹",
                 style: TextStyles.font14.copyWith(color: AppColors.grayColor),
               ),
             ),
@@ -241,15 +235,15 @@ class _OrderDetailsContent extends StatelessWidget {
       ),
       child: Column(
         children: [
-          _buildPriceRow("Subtotal", "${order.subTotal ?? '0'} ₹"),
+          _buildPriceRow(LocaleKeys.subtotal.tr(), "${order.subTotal ?? '0'} ₹"),
           const Gap(8),
           _buildPriceRow(
-            "Discount",
+            LocaleKeys.discount.tr(),
             "- ${order.discount ?? 0}%",
             isDiscount: true,
           ),
           const Gap(8),
-          _buildPriceRow("Tax", "${order.tax ?? '0'} ₹"),
+          _buildPriceRow(LocaleKeys.tax.tr(), "${order.tax ?? '0'} ₹"),
           const Gap(12),
           const Divider(),
           const Gap(6),
@@ -257,7 +251,7 @@ class _OrderDetailsContent extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Total Amount",
+                LocaleKeys.total_amount.tr(),
                 style: TextStyles.font16.copyWith(fontWeight: FontWeight.bold),
               ),
               Text(

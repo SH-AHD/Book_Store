@@ -4,6 +4,7 @@ import 'package:bookia/core/helpers/navigation.dart';
 import 'package:bookia/core/routes/routes.dart';
 import 'package:bookia/core/styles/app_colors.dart';
 import 'package:bookia/core/styles/text_styles.dart';
+import 'package:bookia/core/widgets/app_back_btn.dart';
 import 'package:bookia/core/widgets/app_text_field.dart';
 import 'package:bookia/core/widgets/body_view.dart';
 import 'package:bookia/core/widgets/dialogs.dart';
@@ -12,6 +13,8 @@ import 'package:bookia/core/widgets/svg_pic.dart';
 import 'package:bookia/features/place_order/presentation/cubit/place_order_cubit.dart';
 import 'package:bookia/features/place_order/presentation/cubit/place_order_states.dart';
 import 'package:bookia/features/place_order/presentation/widgets/gov_bottom_sheet.dart';
+import 'package:bookia/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -57,12 +60,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
         return Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            title: GestureDetector(
-              onTap: () {
-                popPage(context);
-              },
-              child: SvgPic(path: AppAssets.backSvg),
-            ),
+              title: AppBackBtn(),
           ),
           body: SingleChildScrollView
           (child: _formBuilder(context)),
@@ -75,7 +73,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Total:",
+                      LocaleKeys.total.tr(),
                       style: TextStyles.font20.copyWith(
                         color: AppColors.darkGrayColor,
                       ),
@@ -85,7 +83,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                 ),
                 Gap(12),
                 MainButton(
-                  text: "Place Order!",
+                  text: LocaleKeys.place_order_btn.tr(),
                   color: AppColors.darkColor,
                   onPressed: () {
                     if (cubit.formKey.currentState!.validate()) {
@@ -112,22 +110,22 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Place Your Order", style: TextStyles.font30),
+                Text(LocaleKeys.place_your_order.tr(), style: TextStyles.font30),
                 Gap(10),
                 Text(
-                  "Please enter your information accurately to complete the order and deliver successfully!",
+                  LocaleKeys.place_order_subtitle.tr(),
                   style: TextStyles.font16.copyWith(color: AppColors.grayColor),
                 ),
                 Gap(25),
                 AppTextField(
                   controller: cubit.fullNameController,
-                  hintText: "Full Name",
+                  hintText: LocaleKeys.full_name.tr(),
                   validator: AppValidators.validateUsername,
                 ),
                 Gap(12),
                 AppTextField(
                   controller: cubit.phoneNumberController,
-                  hintText: "Phone Number",
+                  hintText: LocaleKeys.phone_number.tr(),
                   keyboardType: TextInputType.number,
                   maxLength: 11,
                   validator: AppValidators.validatePhoneNumber,
@@ -135,19 +133,19 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                 Gap(12),
                 AppTextField(
                   controller: cubit.addressController,
-                  hintText: "Address",
+                  hintText: LocaleKeys.address.tr(),
                   keyboardType: TextInputType.streetAddress,
                   validator: AppValidators.validateString,
                 ),
                 Gap(12),
                 AppTextField(
                   controller: cubit.governrateController,
-                  hintText: "Governrate",
+                  hintText: LocaleKeys.governorate.tr(),
                   readOnly: true,
                   suffwid: Icon(Icons.keyboard_arrow_down),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please select a governorate';
+                      return LocaleKeys.please_select_governorate.tr();
                     }
                     return null;
                   },

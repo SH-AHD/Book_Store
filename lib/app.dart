@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:bookia/core/routes/app_routes.dart';
 import 'package:bookia/core/styles/theming.dart';
-import 'package:chili_debug_view/chili_debug_view.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class MainApp extends StatelessWidget {
@@ -13,6 +13,9 @@ class MainApp extends StatelessWidget {
       routerConfig: AppRoutes.routes,
       theme: AppThemes.lightTheme,
       debugShowCheckedModeBanner: false,
+         localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       builder: (context, child) {
         return 
         // DebugView(

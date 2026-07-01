@@ -1,19 +1,22 @@
+import 'package:bookia/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 class AppValidators {
   static String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Please enter your email';
+      return LocaleKeys.validate_email_empty.tr();
     } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
-      return 'Enter a valid email';
+      return LocaleKeys.validate_email_invalid.tr();
     }
     return null;
   }
 
   static String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Please enter your password';
+      return LocaleKeys.validate_password_empty.tr();
     }
     if (value.length < 6) {
-      return 'Password must be at least 6 characters';
+      return LocaleKeys.validate_password_short.tr();
     }
     return null;
   }
@@ -23,48 +26,38 @@ class AppValidators {
     String passwordToMatch,
   ) {
     if (value == null || value.isEmpty) {
-      return 'Please enter your password';
+      return LocaleKeys.validate_password_empty.tr();
     } else if (value != passwordToMatch) {
-      return 'Must be matched with password';
+      return LocaleKeys.validate_password_mismatch.tr();
     }
     return null;
   }
 
-  // static String? Function(String?) validateConfirmPassword(String passwordToMatch) {
-  //   return (String? value) {
-  //     if (value == null || value.isEmpty) {
-  //       return 'Please enter your password';
-  //     } else if (value != passwordToMatch) {
-  //       return 'Must be matched with password';
-  //     }
-  //     return null;
-  //   };
-  // }
   static String? validateUsername(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Please enter your User name';
+      return LocaleKeys.validate_username_empty.tr();
     }
     if (value.length < 3) {
-      return 'User name must be at least 3 characters';
+      return LocaleKeys.validate_username_short.tr();
     }
     return null;
   }
 
   static String? validateString(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Can\'t be Empty!';
+      return LocaleKeys.validate_field_empty.tr();
     }
     if (value.length < 3) {
-      return 'Must be at least 3 characters';
+      return LocaleKeys.validate_field_short.tr();
     }
     return null;
   }
 
   static String? validatePhoneNumber(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Please enter your phone number';
+      return LocaleKeys.validate_phone_empty.tr();
     } else if (!RegExp(r'^01[0125][0-9]{8}$').hasMatch(value)) {
-      return 'Enter a valid Egyptian phone number';
+      return LocaleKeys.validate_phone_invalid.tr();
     }
     return null;
   }

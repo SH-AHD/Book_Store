@@ -7,6 +7,8 @@ import 'package:bookia/core/widgets/custom_cached_network_image.dart';
 import 'package:bookia/core/widgets/svg_pic.dart';
 import 'package:bookia/features/details/presentation/widgets/add_to_cart/page/add_to_cart_button.dart';
 import 'package:bookia/features/home/data/models/all_products_response/product.dart';
+import 'package:bookia/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -86,7 +88,7 @@ class BookCard extends StatelessWidget {
                           child: AddToCartButton(
                             book,
                             cartItemId: book.id!,
-                            text: "Buy",
+                            text: LocaleKeys.Buy.tr(),
                           ),
                         ),
                       ),

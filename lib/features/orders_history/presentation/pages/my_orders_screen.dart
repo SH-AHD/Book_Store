@@ -3,11 +3,14 @@ import 'package:bookia/core/helpers/navigation.dart';
 import 'package:bookia/core/routes/routes.dart';
 import 'package:bookia/core/styles/app_colors.dart';
 import 'package:bookia/core/styles/text_styles.dart';
+import 'package:bookia/core/widgets/app_back_btn.dart';
 import 'package:bookia/core/widgets/svg_pic.dart';
 import 'package:bookia/features/orders_history/data/models/orders_model/order.dart';
 import 'package:bookia/features/orders_history/presentation/cubit/orders_cubit.dart';
 import 'package:bookia/features/orders_history/presentation/cubit/orders_state.dart';
 import 'package:bookia/features/orders_history/presentation/widgets/order_status_chip.dart';
+import 'package:bookia/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -20,16 +23,11 @@ class MyOrdersScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('My Orders'),
-        leading: GestureDetector(
-          onTap: () {
-            popPage(context);
-          },
-          child: Padding(
+        title: Text(LocaleKeys.My_orders.tr()),
+        leading:Padding(
             padding: const EdgeInsets.all(8.0),
-            child: SvgPic(path: AppAssets.backSvg),
-          ),
-        ),
+            child: AppBackBtn(),
+            ),
       ),
       body: BlocBuilder<OrdersCubit, OrdersState>(
         builder: (context, state) {
@@ -43,8 +41,8 @@ class MyOrdersScreen extends StatelessWidget {
             final ordersList = state.ordersModel.data?.orders ?? [];
 
             if (ordersList.isEmpty) {
-              return const Center(
-                child: Text('No orders found yet.', style: TextStyles.font16),
+              return Center(
+                child: Text(LocaleKeys.no_orders_found.tr(), style: TextStyles.font16),
               );
             }
 
@@ -84,7 +82,7 @@ class MyOrdersScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Order #${order.orderCode ?? ''}",
+                LocaleKeys.order_number.tr(namedArgs: {'code': order.orderCode ?? ''}),
                 style: TextStyles.font16.copyWith(fontWeight: FontWeight.bold),
               ),
               buildStatusChip(order.status ?? ''),
@@ -92,7 +90,7 @@ class MyOrdersScreen extends StatelessWidget {
           ),
           const Gap(10),
           Text(
-            "Date: ${order.orderDate ?? ''}",
+            "${LocaleKeys.order_date.tr()}: ${order.orderDate ?? ''}",
             style: TextStyles.font14.copyWith(color: AppColors.grayColor),
           ),
           const Gap(12),
@@ -102,7 +100,7 @@ class MyOrdersScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Total Amount",
+                LocaleKeys.total_amount.tr(),
                 style: TextStyles.font14.copyWith(color: AppColors.grayColor),
               ),
               Text(

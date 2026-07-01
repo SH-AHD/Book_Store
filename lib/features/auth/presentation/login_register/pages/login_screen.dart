@@ -4,6 +4,7 @@ import 'package:bookia/core/helpers/navigation.dart';
 import 'package:bookia/core/routes/routes.dart';
 import 'package:bookia/core/styles/app_colors.dart';
 import 'package:bookia/core/styles/text_styles.dart';
+import 'package:bookia/core/widgets/app_back_btn.dart';
 import 'package:bookia/core/widgets/app_text_field.dart';
 import 'package:bookia/core/widgets/body_view.dart';
 import 'package:bookia/core/widgets/main_button.dart';
@@ -13,6 +14,8 @@ import 'package:bookia/features/auth/presentation/cubit/auth_state.dart';
 import 'package:bookia/features/auth/presentation/login_register/widgets/social_login.dart';
 import 'package:bookia/features/auth/presentation/widgets/auth_footer.dart';
 import 'package:bookia/features/auth/presentation/widgets/auth_listener_widgets.dart';
+import 'package:bookia/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -31,19 +34,11 @@ class LoginScreen extends StatelessWidget {
         );
       },
       child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title: GestureDetector(
-            onTap: () {
-              popPage(context);
-            },
-            child: SvgPic(path: AppAssets.backSvg),
-          ),
-        ),
+        appBar: AppBar(automaticallyImplyLeading: false, title: AppBackBtn()),
         body: _loginBody(context),
         bottomNavigationBar: AuthFooter(
-          ques: "Don’t have an account? ",
-          actionsen: "Register Now",
+          ques: LocaleKeys.no_account.tr(),
+          actionsen: LocaleKeys.register_now.tr(),
           onTap: () {
             pushReplacementPage(context, Routes.register);
           },
@@ -61,19 +56,20 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                "Welcome back! Glad to see you, Again!",
+                LocaleKeys.welcome_back.tr(),
                 style: TextStyles.font30,
+                textAlign: TextAlign.center,
               ),
               Gap(32),
               AppTextField(
                 controller: cubit.emailController,
-                hintText: "Enter your email",
+                hintText: LocaleKeys.enter_email.tr(),
                 validator: AppValidators.validateEmail,
               ),
               Gap(15),
               AppTextField(
                 controller: cubit.passwordController,
-                hintText: "Enter your password",
+                hintText: LocaleKeys.enter_password.tr(),
                 validator: AppValidators.validatePassword,
                 isPass: true,
               ),
@@ -85,7 +81,7 @@ class LoginScreen extends StatelessWidget {
                     pushPage(context, Routes.forgetPass);
                   },
                   child: Text(
-                    "Forgot Password?",
+                    LocaleKeys.forgot_password.tr(),
                     style: TextStyles.font14.copyWith(
                       color: AppColors.darkGrayColor,
                     ),
@@ -94,7 +90,7 @@ class LoginScreen extends StatelessWidget {
               ),
               Gap(30),
               MainButton(
-                text: "Login",
+                text: LocaleKeys.login.tr(),
                 onPressed: () {
                   if (cubit.formKey.currentState!.validate()) {
                     cubit.login();
